@@ -34,14 +34,14 @@ $query->bindParam(':vimage2',$vimage2,PDO::PARAM_STR);
 $query->bindParam(':vimage3',$vimage3,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
-if($lastInsertId)
-{
-$msg="Product posted successfully";
-}
-else
-{
-$error="Something went wrong. Please try again";
-}
+	if($lastInsertId)
+	{
+	$msg="Product posted successfully";
+	}
+	else
+	{
+	$error="Something went wrong. Please try again";
+	}
 }
 ?>
 

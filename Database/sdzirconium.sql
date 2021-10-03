@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2021 at 10:31 AM
+-- Generation Time: Oct 03, 2021 at 02:04 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -116,6 +116,28 @@ CREATE TABLE `membership` (
 
 INSERT INTO `membership` (`id`, `MembershipName`, `CreationDate`, `UpdationDate`) VALUES
 (1, 'Premium', '2021-09-27 08:28:48', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `id` bigint(20) NOT NULL,
+  `dop` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `User` varchar(120) NOT NULL,
+  `house` varchar(120) NOT NULL,
+  `street` varchar(120) NOT NULL,
+  `city` varchar(120) NOT NULL,
+  `postalCode` int(120) NOT NULL,
+  `state` varchar(120) NOT NULL,
+  `country` varchar(120) NOT NULL,
+  `courier` varchar(120) NOT NULL,
+  `payment` varchar(120) NOT NULL,
+  `quantity` int(120) NOT NULL,
+  `item` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -280,6 +302,12 @@ ALTER TABLE `membership`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -325,7 +353,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `cart_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT for table `contactusquery`
@@ -344,6 +372,12 @@ ALTER TABLE `courier`
 --
 ALTER TABLE `membership`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`

@@ -8,6 +8,50 @@ session_start();
 	$result = mysqli_query($con, 'SELECT SUM(price) As val FROM cart');
 	$row = mysqli_fetch_assoc($result);
 	$sum = $row['val'];
+
+	$sql = "SELECT cart.* FROM cart";
+	$query = $dbh -> prepare($sql);
+	$query->execute();
+	$results=$query->fetchAll(PDO::FETCH_OBJ);
+	if($query->rowCount() > 0)
+	{
+	foreach($results as $result)
+	{
+	if(isset($_POST['submit']))
+	{
+		$user=$_SESSION['user_id'];
+		$House=$_POST['house'];
+		$Street=$_POST['street'];
+		$City=$_POST['city'];
+		$Postalcode=$_POST['postal'];
+		$State=$_POST['state'];
+		$Country=$_POST['country'];
+		$Courier=$_POST['courier'];
+		$Item=$result->item_id;
+
+		$sql="INSERT INTO order(User, house, street, city, postalCode, state, country, courier, item) VALUES(:user,:House,:Street,:City,:Postalcode,:State,:Country,:Courier,:Item)";
+		$query = $dbh->prepare($sql);
+		$query->bindParam(':user',$user,PDO::PARAM_STR);
+		$query->bindParam(':House',$House,PDO::PARAM_STR);
+		$query->bindParam(':Street',$Street,PDO::PARAM_STR);
+		$query->bindParam(':City',$City,PDO::PARAM_STR);
+		$query->bindParam(':Postalcode',$Postalcode,PDO::PARAM_STR);
+		$query->bindParam(':State',$State,PDO::PARAM_STR);
+		$query->bindParam(':Country',$Country,PDO::PARAM_STR);
+		$query->bindParam(':Courier',$Courier,PDO::PARAM_STR);
+		$query->bindParam(':Item',$Item,PDO::PARAM_STR);
+		$query->execute();
+
+		$lastInsertId = $dbh->lastInsertId();
+		if($lastInsertId)
+		{
+		$msg="You have purchased successfully";
+		}
+		else
+		{
+		$error="Something went wrong. Please try again";
+		}
+	}
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -56,58 +100,79 @@ session_start();
 <div class="card-body">
 	<h4 class="card-title mb-4">Delivery info</h4>
 	<form action="">
+		
 		<div class="row">
-			<div class="form-group col-sm-6">
-				<label class="js-check box active">
-					<input type="radio" name="dostavka" value="option1" checked>
-					<h6 class="title">Delivery</h6>
-					<p class="text-muted">We will deliver by DHL Kargo</p>
-				</label> <!-- js-check.// -->
-			</div>
-			<div class="form-group col-sm-6">
-				<label class="js-check box">
-					<input type="radio" name="dostavka" value="option1">
-					<h6 class="title">Pick-up</h6>
-					<p class="text-muted">Come to our office to somewhere </p>
-				</label> <!-- js-check.// -->
-			</div>
-		</div> <!-- row.// -->
-			
-
-		<div class="row">
-				<div class="form-group col-sm-6">
-					<label>City*</label>
-					<select name="" class="form-control">
-						<option value="">Tashkent</option>
-						<option value="">Buxoro</option>
-						<option value="">Samarqand</option>
-					</select>
-				</div>
-				<div class="form-group col-sm-6">
-					<label>Area*</label>
-					<input type="text" placeholder="Type here" class="form-control">
+				<div class="form-group col-sm-4">
+					<label>House No.</label>
+					<input name="house" type="text" placeholder="House Address" class="form-control" required>
 				</div>
 				<div class="form-group col-sm-8">
 					<label>Street*</label>
-					<input type="text" placeholder="Type here" class="form-control">
+					<input name="street" type="text" placeholder="Street" class="form-control" required>
 				</div>
-				<div class="form-group col-sm-4">
-					<label>Building</label>
-					<input type="text" placeholder="" class="form-control">
+				<div class="form-group col-sm-6">
+					<label>City*</label>
+					<input name="city" type="text" placeholder="City" class="form-control" required>
 				</div>
-				<div class="form-group col-sm-4">
-					<label>House</label>
-					<input type="text" placeholder="Type here" class="form-control">
-				</div>
+				
 				<div class="form-group col-sm-4">
 					<label>Postal code</label>
-					<input type="text" placeholder="" class="form-control">
+					<input name="postal" type="text" placeholder="Ex: 58200" class="form-control" required>
 				</div>
-				<div class="form-group col-sm-4">
-					<label>Zip</label>
-					<input type="text" placeholder="" class="form-control">
+				<div class="form-group col-sm-6">
+					<label>State*</label>
+					<input name="state" type="text" placeholder="State" class="form-control" required>
+				</div>
+				<div class="form-group col-md-6">
+					  <label>Country</label>
+					  <select id="inputState" class="form-control" name="country" required>
+					    <option> Choose...</option>
+                          <option>Indoneisa</option>
+					      <option>Russia</option>
+                          <option>France</option>
+                          <option>Germany</option>
+                          <option>Italy</option>
+					      <option>Singapore</option>
+					      <option selected="">Malaysia</option>
+					      <option>Thailand</option>
+                          <option>United States</option>
+					  </select>
 				</div>
 		</div> <!-- row.// -->	
+	</form>
+</div> <!-- card-body.// -->
+</article> <!-- card.// -->
+
+<article class="card mb-4">
+<div class="card-body">
+	<h4 class="card-title mb-4">Select your courier</h4>
+	<form method="POST" action="">
+	<div class="row">
+		<div class="form-group col-md-6">
+			<p><strong>Courier:</strong>
+				<?php
+					if(isset($_POST["courier"])){
+					$courier=$_POST["courier"];
+					echo $courier;
+						}
+				?>
+			</p>
+			<select id="courier" class="form-control" name="courier" onchange="this.form.submit()" >
+			<option value="" disable selected> Select </option>
+			<?php $ret="select name from courier";
+						$query= $dbh -> prepare($ret);
+						$query-> execute();
+						$results = $query -> fetchAll(PDO::FETCH_OBJ);
+						if($query -> rowCount() > 0)
+						{
+						foreach($results as $result)
+						{
+						?>
+						<option value="<?php echo htmlentities($result->name);?>"><?php echo htmlentities($result->name);?></option>
+						<?php }} ?>
+			</select>
+		</div>
+	</div> <!-- row.// -->	
 	</form>
 </div> <!-- card-body.// -->
 </article> <!-- card.// -->
@@ -176,7 +241,7 @@ session_start();
 		<header class="card-header">
 			<img src="images/logos/logo.png" class="float-right" height="24">  
 			<label class="form-check" data-toggle="collapse" data-target="#cash">
-				<input class="form-check-input" name="payment-option" type="radio" value="option1">
+				<input class="form-check-input" name="payment" type="radio" value="option1">
 				<h6 class="form-check-label"> Cash on delivery </h6>
 			</label>
 		</header>
@@ -200,11 +265,18 @@ session_start();
 				<h4 class="mb-3">Overview</h4>
 				<dl class="dlist-align">
 					<dt class="text-muted">Delivery:</dt>
-					<dd>Pick-up</dd>
+					<dd>
+					<?php
+						if(isset($_POST["courier"])){
+							$courier=$_POST["courier"];
+							echo $courier;
+						}
+					?>
+					</dd>
 				  </dl>
 				<dl class="dlist-align">
 				  <dt class="text-muted">Delivery type:</dt>
-				  <dd>Standart</dd>
+				  <dd>Courier</dd>
 				</dl>
 				<dl class="dlist-align">
 				  <dt class="text-muted">Payment method:</dt>
@@ -216,8 +288,11 @@ session_start();
 				  <dd class="h5">RM<?php echo $sum;?></dd>
 				</dl>
 				<hr>
-				<p class="small mb-3 text-muted">By clicking you are agree with terms of condition </p>
-				<a href="#" class="btn btn-primary btn-block"> Button  </a>
+				<p class="small mb-3 text-muted">By clicking buy you are agreed with <a href="tac.php" class="card-product" style="color:blue">terms & conditions</a>. </p>
+				
+				<form method="post">
+				<input type="submit" class="btn btn-primary btn-block"  name="submit" value="Buy">
+				</form>
 				
 			</div> <!-- card-body.// -->
 			</div> <!-- card.// -->
@@ -233,7 +308,7 @@ session_start();
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 
-<!-- ========================= HEADER  ========================= -->
+<!-- ========================= FOOTER  ========================= -->
 <?php
 include('includes/footer.php');
 ?>
@@ -241,3 +316,5 @@ include('includes/footer.php');
 
 </body>
 </html>
+
+<?php }} ?>

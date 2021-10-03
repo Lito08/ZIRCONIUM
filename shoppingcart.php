@@ -127,7 +127,7 @@ session_start();
 			</dl>
 			<dl class="dlist-align">
 			  <dt>Discount:</dt>
-			  <dd class="text-right text-danger">- $13.00</dd>
+			  <dd class="text-right text-danger">- RM0.00</dd>
 			</dl>
 			<dl class="dlist-align">
 			  <dt>Total:</dt>

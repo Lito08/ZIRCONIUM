@@ -5,33 +5,6 @@ include("../functions.php");
 include("../connection.php");
 error_reporting(0);
 
-if(isset($_POST['submit']))
-{
-
-$useremail=$_SESSION['user_id'];
-$vhid=$_GET['vhid'];
-$status = 0;
-$Pprice = 69;
-$sql="INSERT INTO cart(userEmail,item_id,price,Status) VALUES(:useremail,:vhid,:Pprice,:status)";
-
-$query = $dbh->prepare($sql);
-$query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
-$query->bindParam(':vhid',$vhid,PDO::PARAM_STR);
-$query->bindParam(':Pprice',$Pprice,PDO::PARAM_STR);
-$query->bindParam(':status',$status,PDO::PARAM_STR);
-$query->execute();
-$lastInsertId = $dbh->lastInsertId();
-if($lastInsertId)
-{
-echo "<script>alert('Product has been added to shopping cart.');</script>";
-}
-else
-{
-echo "<script>alert('Something went wrong. Please try again');</script>";
-}
-
-}
-
 ?>
 
 
@@ -83,6 +56,34 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {
 $_SESSION['brndid']=$result->bid;
+
+if(isset($_POST['submit']))
+{
+
+$useremail=$_SESSION['user_id'];
+$vhid = $_GET['vhid'];
+$status = 0;
+$Pprice = $result->price;
+$sql="INSERT INTO cart(userEmail,item_id,price,Status) VALUES(:useremail,:vhid,:Pprice,:status)";
+
+$query = $dbh->prepare($sql);
+$query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
+$query->bindParam(':vhid',$vhid,PDO::PARAM_STR);
+$query->bindParam(':Pprice',$Pprice,PDO::PARAM_STR);
+$query->bindParam(':status',$status,PDO::PARAM_STR);
+$query->execute();
+$lastInsertId = $dbh->lastInsertId();
+if($lastInsertId)
+{
+echo "<script>alert('Product has been added to shopping cart.');</script>";
+}
+else
+{
+echo "<script>alert('Something went wrong. Please try again');</script>";
+}
+
+}
+
 ?>
 
 <section class="section-content padding-y bg">
