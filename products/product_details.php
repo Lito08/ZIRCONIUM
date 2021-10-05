@@ -60,27 +60,28 @@ $_SESSION['brndid']=$result->bid;
 if(isset($_POST['submit']))
 {
 
-$useremail=$_SESSION['user_id'];
-$vhid = $_GET['vhid'];
-$status = 0;
-$Pprice = $result->price;
-$sql="INSERT INTO cart(userEmail,item_id,price,Status) VALUES(:useremail,:vhid,:Pprice,:status)";
+	$useremail=$_SESSION['user_id'];
+	$vhid = $_GET['vhid'];
+	$status = 0;
+	$Pprice = $result->price;
+	$sql="INSERT INTO cart(userEmail,item_id,price,Status) VALUES(:useremail,:vhid,:Pprice,:status)";
 
-$query = $dbh->prepare($sql);
-$query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
-$query->bindParam(':vhid',$vhid,PDO::PARAM_STR);
-$query->bindParam(':Pprice',$Pprice,PDO::PARAM_STR);
-$query->bindParam(':status',$status,PDO::PARAM_STR);
-$query->execute();
-$lastInsertId = $dbh->lastInsertId();
-if($lastInsertId)
-{
-echo "<script>alert('Product has been added to shopping cart.');</script>";
-}
-else
-{
-echo "<script>alert('Something went wrong. Please try again');</script>";
-}
+	$query = $dbh->prepare($sql);
+	$query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
+	$query->bindParam(':vhid',$vhid,PDO::PARAM_STR);
+	$query->bindParam(':Pprice',$Pprice,PDO::PARAM_STR);
+	$query->bindParam(':status',$status,PDO::PARAM_STR);
+	$query->execute();
+	$lastInsertId = $dbh->lastInsertId();
+	if($lastInsertId)
+	{
+		echo "<script>alert('Product has been added to shopping cart.');</script>";
+		echo("<script>window.location = '../shoppingcart.php';</script>");
+	}
+	else
+	{
+		
+	}
 
 }
 
@@ -184,6 +185,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 		<input type="submit" class="btn  btn-primary"  name="submit" value="Buy Now">
         <input type="submit" class="btn  btn-outline-primary"  name="submit" value="Add to cart">
     </div>
+
     <?php } else { ?>
         <a href="../login.php" class="btn  btn-primary">Login to buy!</a>
 		<a href="../signup.php" class="btn  btn-outline-primary">Don't have an account? Sign Up!</a>

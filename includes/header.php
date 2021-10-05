@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(mysqli_query($con, $sql))
     {
       echo "<script>alert('Product has been deleted.');</script>";
+      echo("<script>window.location = 'shoppingcart.php';</script>");
     }else{
       echo "<script>alert('Failed to delete item.');</script>";
     }
@@ -102,7 +103,7 @@ if($result=mysqli_query($con,$sql))
            <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="aboutus.php">About Us</a>
+          <a class="nav-link" href="aboutus.php" target="_blank">About Us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Promotions</a>

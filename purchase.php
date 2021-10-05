@@ -98,6 +98,40 @@ session_start();
 
 <article class="card mb-4">
 <div class="card-body">
+	<h4 class="card-title mb-4">Select your courier</h4>
+	<form method="POST" action="">
+	<div class="row">
+		<div class="form-group col-md-6">
+			<p><strong>Courier:</strong>
+				<?php
+					if(isset($_POST["courier"])){
+					$courier=$_POST["courier"];
+					echo $courier;
+						}
+				?>
+			</p>
+			<select id="courier" class="form-control" name="courier" onchange="this.form.submit()" >
+			<option value="" disable selected> Select </option>
+			<?php $ret="select name from courier";
+						$query= $dbh -> prepare($ret);
+						$query-> execute();
+						$results = $query -> fetchAll(PDO::FETCH_OBJ);
+						if($query -> rowCount() > 0)
+						{
+						foreach($results as $result)
+						{
+						?>
+						<option value="<?php echo htmlentities($result->name);?>"><?php echo htmlentities($result->name);?></option>
+						<?php }} ?>
+			</select>
+		</div>
+	</div> <!-- row.// -->	
+	</form>
+</div> <!-- card-body.// -->
+</article> <!-- card.// -->
+
+<article class="card mb-4">
+<div class="card-body">
 	<h4 class="card-title mb-4">Delivery info</h4>
 	<form action="">
 		
@@ -142,41 +176,6 @@ session_start();
 	</form>
 </div> <!-- card-body.// -->
 </article> <!-- card.// -->
-
-<article class="card mb-4">
-<div class="card-body">
-	<h4 class="card-title mb-4">Select your courier</h4>
-	<form method="POST" action="">
-	<div class="row">
-		<div class="form-group col-md-6">
-			<p><strong>Courier:</strong>
-				<?php
-					if(isset($_POST["courier"])){
-					$courier=$_POST["courier"];
-					echo $courier;
-						}
-				?>
-			</p>
-			<select id="courier" class="form-control" name="courier" onchange="this.form.submit()" >
-			<option value="" disable selected> Select </option>
-			<?php $ret="select name from courier";
-						$query= $dbh -> prepare($ret);
-						$query-> execute();
-						$results = $query -> fetchAll(PDO::FETCH_OBJ);
-						if($query -> rowCount() > 0)
-						{
-						foreach($results as $result)
-						{
-						?>
-						<option value="<?php echo htmlentities($result->name);?>"><?php echo htmlentities($result->name);?></option>
-						<?php }} ?>
-			</select>
-		</div>
-	</div> <!-- row.// -->	
-	</form>
-</div> <!-- card-body.// -->
-</article> <!-- card.// -->
-
 
 <article class="accordion" id="accordion_pay">
 	<div class="card">
