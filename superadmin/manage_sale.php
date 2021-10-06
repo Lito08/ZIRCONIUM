@@ -12,11 +12,11 @@ else{
 if(isset($_GET['del']))
 {
 $id=$_GET['del'];
-$sql = "delete from products WHERE id=:id";
+$sql = "delete from sale WHERE id=:id";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> execute();
-$msg="Page data updated  successfully";
+$msg="Page data updated successfully";
 }
  ?>
 
@@ -31,7 +31,7 @@ $msg="Page data updated  successfully";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 
-	<title>Zirconium Manage Products</title>
+	<title>Zirconium Manage Total Sales</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -78,11 +78,11 @@ $msg="Page data updated  successfully";
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-12">
-						<h2 class="page-title">Manage Products</h2>
+						<h2 class="page-title">Manage Total Sale</h2>
 
 						<!-- Zero Configuration Table -->
 						<div class="panel panel-default">
-							<div class="panel-heading">List of products</div>
+							<div class="panel-heading">List of sales</div>
 							<div class="panel-body">
 							<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php }
 							else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
@@ -90,14 +90,17 @@ $msg="Page data updated  successfully";
 									<thead>
 										<tr>
 										<th>#</th>
-										<th>Type</th>
-										<th>Product Name</th>
-										<th>Price (RM)</th>
-										<th>Per</th>
-										<th>Quantity</th>
-										<th>Brand</th>
-										<th>Ribbon</th>
-										<th>Date</th>
+										<th>User</th>
+										<th>House</th>
+										<th>Street</th>
+										<th>City</th>
+										<th>Postal Code</th>
+										<th>State</th>
+										<th>Country</th>
+                                        <th>Courier</th>
+                                        <th>Item</th>
+                                        <th>Quantity</th>
+										<th>Date of purchase</th>
 										<th>Action</th>
 										</tr>
 									</thead>
@@ -108,7 +111,7 @@ $msg="Page data updated  successfully";
 									<tbody>
 
 <?php 
-$sql = "SELECT * from products ";
+$sql = "SELECT * from sale ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -120,17 +123,19 @@ foreach($results as $result)
 ?>
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($result->ptype);?></td>
-											<td><?php echo htmlentities($result->title);?></td>
-											<td><?php echo htmlentities($result->price);?></td>
-											<td><?php echo htmlentities($result->perm);?></td>
-											<td><?php echo htmlentities($result->quantity);?></td>
-											<td><?php echo htmlentities($result->brand);?></td>
-											<td><?php echo htmlentities($result->ribbon);?></td>
-											<td><?php echo htmlentities($result->date);?></td>
+											<td><?php echo htmlentities($result->User);?></td>
+											<td><?php echo htmlentities($result->house);?></td>
+											<td><?php echo htmlentities($result->street);?></td>
+											<td><?php echo htmlentities($result->city);?></td>
+											<td><?php echo htmlentities($result->postalCode);?></td>
+											<td><?php echo htmlentities($result->state);?></td>
+											<td><?php echo htmlentities($result->country);?></td>
+											<td><?php echo htmlentities($result->courier);?></td>
+                                            <td><?php echo htmlentities($result->item);?></td>
+                                            <td><?php echo htmlentities($result->quantity);?></td>
+                                            <td><?php echo htmlentities($result->dop);?></td>
 
-											<td><a href="edit_products.php?id=<?php echo $result->id;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
-											<a href="manage_products.php?del=<?php echo $result->id;?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a></td>
+											<td><a href="manage_products.php?del=<?php echo $result->id;?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a></td>
 										</tr>
 										<?php $cnt=$cnt+1; }} ?>
 									</tbody>

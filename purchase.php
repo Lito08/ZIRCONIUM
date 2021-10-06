@@ -9,14 +9,6 @@ session_start();
 	$row = mysqli_fetch_assoc($result);
 	$sum = $row['val'];
 
-	$sql = "SELECT cart.* FROM cart";
-	$query = $dbh -> prepare($sql);
-	$query->execute();
-	$results=$query->fetchAll(PDO::FETCH_OBJ);
-	if($query->rowCount() > 0)
-	{
-	foreach($results as $result)
-	{
 	if(isset($_POST['submit']))
 	{
 		$user=$_SESSION['user_id'];
@@ -27,9 +19,8 @@ session_start();
 		$State=$_POST['state'];
 		$Country=$_POST['country'];
 		$Courier=$_POST['courier'];
-		$Item=$result->item_id;
 
-		$sql="INSERT INTO order(User, house, street, city, postalCode, state, country, courier, item) VALUES(:user,:House,:Street,:City,:Postalcode,:State,:Country,:Courier,:Item)";
+		$sql="INSERT INTO sale(User, house, street, city, postalCode, state, country, courier) VALUES(:user,:House,:Street,:City,:Postalcode,:State,:Country,:Courier)";
 		$query = $dbh->prepare($sql);
 		$query->bindParam(':user',$user,PDO::PARAM_STR);
 		$query->bindParam(':House',$House,PDO::PARAM_STR);
@@ -39,13 +30,13 @@ session_start();
 		$query->bindParam(':State',$State,PDO::PARAM_STR);
 		$query->bindParam(':Country',$Country,PDO::PARAM_STR);
 		$query->bindParam(':Courier',$Courier,PDO::PARAM_STR);
-		$query->bindParam(':Item',$Item,PDO::PARAM_STR);
 		$query->execute();
 
 		$lastInsertId = $dbh->lastInsertId();
 		if($lastInsertId)
 		{
 		$msg="You have purchased successfully";
+		echo("<script>window.location = 'index.php';</script>");
 		}
 		else
 		{
@@ -92,6 +83,7 @@ session_start();
 <section class="section-content padding-y bg">
 <div class="container">
 
+<form method="post" action="">
 <!-- ============================ COMPONENT 2 ================================= -->
 <div class="row">
 		<main class="col-md-8">
@@ -99,6 +91,7 @@ session_start();
 <article class="card mb-4">
 <div class="card-body">
 	<h4 class="card-title mb-4">Select your courier</h4>
+<<<<<<< Updated upstream
 	<form method="POST" action="">
 	<div class="row">
 		<div class="form-group col-md-6">
@@ -113,6 +106,13 @@ session_start();
 			<select id="courier" class="form-control" name="courier" onchange="this.form.submit()" >
 			<option value="" disable selected> Select </option>
 			<?php $ret="select name from courier";
+=======
+	<div class="row">
+		<div class="form-group col-md-6">
+			<select class="form-control" name="courier" required>
+			<option value="" disable selected> Select </option>
+			<?php $ret="SELECT name FROM courier";
+>>>>>>> Stashed changes
 						$query= $dbh -> prepare($ret);
 						$query-> execute();
 						$results = $query -> fetchAll(PDO::FETCH_OBJ);
@@ -125,16 +125,18 @@ session_start();
 						<?php }} ?>
 			</select>
 		</div>
+<<<<<<< Updated upstream
 	</div> <!-- row.// -->	
 	</form>
+=======
+	</div> <!-- row.// -->
+>>>>>>> Stashed changes
 </div> <!-- card-body.// -->
 </article> <!-- card.// -->
 
 <article class="card mb-4">
 <div class="card-body">
 	<h4 class="card-title mb-4">Delivery info</h4>
-	<form action="">
-		
 		<div class="row">
 				<div class="form-group col-sm-4">
 					<label>House No.</label>
@@ -160,20 +162,19 @@ session_start();
 				<div class="form-group col-md-6">
 					  <label>Country</label>
 					  <select id="inputState" class="form-control" name="country" required>
-					    <option> Choose...</option>
-                          <option>Indoneisa</option>
-					      <option>Russia</option>
-                          <option>France</option>
-                          <option>Germany</option>
-                          <option>Italy</option>
-					      <option>Singapore</option>
-					      <option selected="">Malaysia</option>
-					      <option>Thailand</option>
-                          <option>United States</option>
+					      <option value=""> Choose...</option>
+                          <option value="Indoneisa">Indoneisa</option>
+					      <option value="Russia">Russia</option>
+                          <option value="France">France</option>
+                          <option value="Germany">Germany</option>
+                          <option value="Italy">Italy</option>
+					      <option value="Singapore">Singapore</option>
+					      <option value="Malaysia" selected="">Malaysia</option>
+					      <option value="Thailand">Thailand</option>
+                          <option value="United States">United States</option>
 					  </select>
 				</div>
-		</div> <!-- row.// -->	
-	</form>
+		</div> <!-- row.// -->
 </div> <!-- card-body.// -->
 </article> <!-- card.// -->
 
@@ -263,17 +264,6 @@ session_start();
 			<div class="card-body">
 				<h4 class="mb-3">Overview</h4>
 				<dl class="dlist-align">
-					<dt class="text-muted">Delivery:</dt>
-					<dd>
-					<?php
-						if(isset($_POST["courier"])){
-							$courier=$_POST["courier"];
-							echo $courier;
-						}
-					?>
-					</dd>
-				  </dl>
-				<dl class="dlist-align">
 				  <dt class="text-muted">Delivery type:</dt>
 				  <dd>Courier</dd>
 				</dl>
@@ -289,9 +279,8 @@ session_start();
 				<hr>
 				<p class="small mb-3 text-muted">By clicking buy you are agreed with <a href="tac.php" class="card-product" style="color:blue">terms & conditions</a>. </p>
 				
-				<form method="post">
-				<input type="submit" class="btn btn-primary btn-block"  name="submit" value="Buy">
-				</form>
+				<button type="submit" class="btn btn-primary btn-block"  name="submit">Buy</button>
+				
 				
 			</div> <!-- card-body.// -->
 			</div> <!-- card.// -->
@@ -301,7 +290,7 @@ session_start();
 <!-- ============================ COMPONENT 2 END//  ================================= -->
 
 
-
+</form>
 
 </div> <!-- container .//  -->
 </section>
@@ -315,5 +304,3 @@ include('includes/footer.php');
 
 </body>
 </html>
-
-<?php }} ?>

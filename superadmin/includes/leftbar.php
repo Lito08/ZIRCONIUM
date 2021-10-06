@@ -14,9 +14,15 @@
 <li><a href="manage_products.php"><i class="fa fa-sitemap"></i> Products</a>
 					<ul>
 						<li><a href="manage_products.php">Manage Products</a></li>
+						<li><a href="manage_type.php">Manage Products Type</a></li>
 						<li><a href="add_products.php">Add Products</a></li>
 						<li><a href="add_type.php">Add Products Type</a></li>
-						<li><a href="manage_type.php">Manage Products Type</a></li>
+					</ul>
+</li>
+
+<li><a href="manage_sale.php"><i class="fa fa-sitemap"></i>Manage Total Sale</a>
+					<ul>
+						<li><a href="manage_sale.php">Manage Total Sale</a></li>
 					</ul>
 </li>
 
@@ -26,6 +32,7 @@
 						<li><a href="add_membership.php">Add Membership</a></li>
 					</ul>
 </li>
+
 <li><a href="manage_courier.php"><i class="fa fa-sitemap"></i>Courier</a>
 					<ul>
 						<li><a href="manage_courier.php">Manage Courier</a></li>

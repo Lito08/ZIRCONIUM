@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2021 at 02:04 PM
+-- Generation Time: Oct 06, 2021 at 03:17 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -56,6 +56,14 @@ CREATE TABLE `cart` (
   `price` decimal(10,2) NOT NULL,
   `Status` int(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `User_id`, `item_id`, `userEmail`, `quantity`, `price`, `Status`) VALUES
+(133, 0, 3, 'lit0', 0, '140.00', 0),
+(134, 0, 2, 'lit0', 0, '200.00', 0);
 
 -- --------------------------------------------------------
 
@@ -120,28 +128,6 @@ INSERT INTO `membership` (`id`, `MembershipName`, `CreationDate`, `UpdationDate`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
---
-
-CREATE TABLE `order` (
-  `id` bigint(20) NOT NULL,
-  `dop` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `User` varchar(120) NOT NULL,
-  `house` varchar(120) NOT NULL,
-  `street` varchar(120) NOT NULL,
-  `city` varchar(120) NOT NULL,
-  `postalCode` int(120) NOT NULL,
-  `state` varchar(120) NOT NULL,
-  `country` varchar(120) NOT NULL,
-  `courier` varchar(120) NOT NULL,
-  `payment` varchar(120) NOT NULL,
-  `quantity` int(120) NOT NULL,
-  `item` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `products`
 --
 
@@ -170,8 +156,36 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `ptype`, `title`, `price`, `perm`, `stock`, `brand`, `description`, `ribbon`, `Vimage1`, `Vimage2`, `Vimage3`, `delivery`, `date`, `pid`) VALUES
 (2, '1', 'Fresh Oyster', '200.00', 'Kg', 0, '', 'Best oyster that dr likes.', '', 'oyster1.jpg', 'oyster2.jpg', 'oyster3.jpeg', '', '2021-09-30 14:38:43', 0),
 (3, '1', 'Salmon King', '140.00', 'Kg', 0, '', 'The best salmon in the world that came from New Zealand.', '', 'salmon.jpg', 'salmon1.jpg', 'salmon2.jpg', '', '2021-09-30 14:38:57', 0),
-(4, '1', 'King Crab', '200.00', 'Kg', 0, '', 'Big juicy tender crab that is very soft when bite into. ', '', 'kc1.jpg', 'kc2.jpg', 'kc3.jpg', '', '2021-09-30 14:39:05', 0),
-(5, '7', 'Iphone 13', '4889.00', 'Unit', 0, '', 'Very expensive and not worth it.', '', 'iphone13.jpg', 'iphone13two.png', 'iphone13three.png', '', '2021-09-30 14:39:24', 0);
+(4, '1', 'King Crab', '200.00', 'Kg', 0, '', 'Big juicy tender crab that is very soft when bite into. ', '', 'kc1.jpg', 'kc2.jpg', 'kc3.jpg', '', '2021-09-30 14:39:05', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sale`
+--
+
+CREATE TABLE `sale` (
+  `id` bigint(20) NOT NULL,
+  `dop` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `User` varchar(120) NOT NULL,
+  `house` varchar(120) NOT NULL,
+  `street` varchar(120) NOT NULL,
+  `city` varchar(120) NOT NULL,
+  `postalCode` varchar(120) NOT NULL,
+  `state` varchar(120) NOT NULL,
+  `country` varchar(120) NOT NULL,
+  `courier` varchar(120) NOT NULL,
+  `payment` varchar(120) NOT NULL,
+  `quantity` int(120) NOT NULL,
+  `item` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sale`
+--
+
+INSERT INTO `sale` (`id`, `dop`, `User`, `house`, `street`, `city`, `postalCode`, `state`, `country`, `courier`, `payment`, `quantity`, `item`) VALUES
+(9, '2021-10-06 13:10:08', 'lit0', 'No.2', 'Jalan Anggun 3H,', 'Rawang', '48200', 'Selangor', 'Malaysia', 'Poslaju', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -253,7 +267,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_id`, `user_name`, `email`, `password`, `date`, `full_name`, `country`, `city`, `gender`) VALUES
-(17, 9223372036854775807, 'lit0', 'danielyusoff08@gmail.com', 'e7ef31af97f4c58006e4a917bffbefd4', '2021-09-30 15:50:24', 'Daniel Yusoff', 'Malaysia', 'Kuala Lumpur', 'male');
+(18, 88567017906154, 'lit0', 'danielyusoff08@gmail.com', 'e7ef31af97f4c58006e4a917bffbefd4', '2021-10-04 13:02:27', 'Daniel Yusoff', 'Malaysia', 'Kuala Lumpur', 'male');
 
 -- --------------------------------------------------------
 
@@ -302,15 +316,15 @@ ALTER TABLE `membership`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `order`
---
-ALTER TABLE `order`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sale`
+--
+ALTER TABLE `sale`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -353,7 +367,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `cart_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT for table `contactusquery`
@@ -374,16 +388,16 @@ ALTER TABLE `membership`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `order`
---
-ALTER TABLE `order`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `sale`
+--
+ALTER TABLE `sale`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `supplier`
@@ -401,7 +415,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
