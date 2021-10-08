@@ -11,36 +11,45 @@ session_start();
 
 	if(isset($_POST['submit']))
 	{
-		$user=$_SESSION['user_id'];
-		$House=$_POST['house'];
-		$Street=$_POST['street'];
-		$City=$_POST['city'];
-		$Postalcode=$_POST['postal'];
-		$State=$_POST['state'];
-		$Country=$_POST['country'];
-		$Courier=$_POST['courier'];
-
-		$sql="INSERT INTO sale(User, house, street, city, postalCode, state, country, courier) VALUES(:user,:House,:Street,:City,:Postalcode,:State,:Country,:Courier)";
-		$query = $dbh->prepare($sql);
-		$query->bindParam(':user',$user,PDO::PARAM_STR);
-		$query->bindParam(':House',$House,PDO::PARAM_STR);
-		$query->bindParam(':Street',$Street,PDO::PARAM_STR);
-		$query->bindParam(':City',$City,PDO::PARAM_STR);
-		$query->bindParam(':Postalcode',$Postalcode,PDO::PARAM_STR);
-		$query->bindParam(':State',$State,PDO::PARAM_STR);
-		$query->bindParam(':Country',$Country,PDO::PARAM_STR);
-		$query->bindParam(':Courier',$Courier,PDO::PARAM_STR);
+		$sql = "SELECT item_id as IdItem FROM cart";
+		$query = $dbh -> prepare($sql);
 		$query->execute();
+		$item=$query->fetchAll(PDO::FETCH_OBJ);
+		foreach($item as $items)
+		{
+			$user=$_SESSION['user_id'];
+			$House=$_POST['house'];
+			$Street=$_POST['street'];
+			$City=$_POST['city'];
+			$Postalcode=$_POST['postal'];
+			$State=$_POST['state'];
+			$Country=$_POST['country'];
+			$Courier=$_POST['courier'];
+			$Item=$items->IdItem;
 
-		$lastInsertId = $dbh->lastInsertId();
-		if($lastInsertId)
-		{
-		$msg="You have purchased successfully";
-		echo("<script>window.location = 'index.php';</script>");
-		}
-		else
-		{
-		$error="Something went wrong. Please try again";
+			$sql="INSERT INTO sale(User, house, street, city, postalCode, state, country, courier, item) VALUES(:user,:House,:Street,:City,:Postalcode,:State,:Country,:Courier,:Item)";
+			$query = $dbh->prepare($sql);
+			$query->bindParam(':user',$user,PDO::PARAM_STR);
+			$query->bindParam(':House',$House,PDO::PARAM_STR);
+			$query->bindParam(':Street',$Street,PDO::PARAM_STR);
+			$query->bindParam(':City',$City,PDO::PARAM_STR);
+			$query->bindParam(':Postalcode',$Postalcode,PDO::PARAM_STR);
+			$query->bindParam(':State',$State,PDO::PARAM_STR);
+			$query->bindParam(':Country',$Country,PDO::PARAM_STR);
+			$query->bindParam(':Courier',$Courier,PDO::PARAM_STR);
+			$query->bindParam(':Item',$Item,PDO::PARAM_STR);
+			$query->execute();
+
+			$lastInsertId = $dbh->lastInsertId();
+			if($lastInsertId)
+			{
+			$msg="You have purchased successfully";
+			echo("<script>window.location = 'index.php';</script>");
+			}
+			else
+			{
+			$error="Something went wrong. Please try again";
+			}
 		}
 	}
 ?>
@@ -91,7 +100,6 @@ session_start();
 <article class="card mb-4">
 <div class="card-body">
 	<h4 class="card-title mb-4">Select your courier</h4>
-<<<<<<< Updated upstream
 	<form method="POST" action="">
 	<div class="row">
 		<div class="form-group col-md-6">
@@ -106,13 +114,6 @@ session_start();
 			<select id="courier" class="form-control" name="courier" onchange="this.form.submit()" >
 			<option value="" disable selected> Select </option>
 			<?php $ret="select name from courier";
-=======
-	<div class="row">
-		<div class="form-group col-md-6">
-			<select class="form-control" name="courier" required>
-			<option value="" disable selected> Select </option>
-			<?php $ret="SELECT name FROM courier";
->>>>>>> Stashed changes
 						$query= $dbh -> prepare($ret);
 						$query-> execute();
 						$results = $query -> fetchAll(PDO::FETCH_OBJ);
@@ -125,12 +126,8 @@ session_start();
 						<?php }} ?>
 			</select>
 		</div>
-<<<<<<< Updated upstream
 	</div> <!-- row.// -->	
 	</form>
-=======
-	</div> <!-- row.// -->
->>>>>>> Stashed changes
 </div> <!-- card-body.// -->
 </article> <!-- card.// -->
 

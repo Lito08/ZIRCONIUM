@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2021 at 03:17 PM
+-- Generation Time: Oct 08, 2021 at 04:10 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -62,8 +62,9 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `User_id`, `item_id`, `userEmail`, `quantity`, `price`, `Status`) VALUES
-(133, 0, 3, 'lit0', 0, '140.00', 0),
-(134, 0, 2, 'lit0', 0, '200.00', 0);
+(138, 0, 2, 'lit0', 0, '200.00', 0),
+(139, 0, 3, 'lit0', 0, '140.00', 0),
+(140, 0, 4, 'lit0', 0, '200.00', 0);
 
 -- --------------------------------------------------------
 
@@ -185,7 +186,9 @@ CREATE TABLE `sale` (
 --
 
 INSERT INTO `sale` (`id`, `dop`, `User`, `house`, `street`, `city`, `postalCode`, `state`, `country`, `courier`, `payment`, `quantity`, `item`) VALUES
-(9, '2021-10-06 13:10:08', 'lit0', 'No.2', 'Jalan Anggun 3H,', 'Rawang', '48200', 'Selangor', 'Malaysia', 'Poslaju', '', 0, 0);
+(14, '2021-10-08 14:09:38', 'lit0', 'No.2', 'Jalan Anggun 3H,', 'Rawang', '48200', 'Selangor', 'Malaysia', 'DHL', '', 0, 2),
+(15, '2021-10-08 14:09:38', 'lit0', 'No.2', 'Jalan Anggun 3H,', 'Rawang', '48200', 'Selangor', 'Malaysia', 'DHL', '', 0, 3),
+(16, '2021-10-08 14:09:38', 'lit0', 'No.2', 'Jalan Anggun 3H,', 'Rawang', '48200', 'Selangor', 'Malaysia', 'DHL', '', 0, 4);
 
 -- --------------------------------------------------------
 
@@ -367,7 +370,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `cart_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT for table `contactusquery`
@@ -397,7 +400,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `sale`
 --
 ALTER TABLE `sale`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `supplier`
