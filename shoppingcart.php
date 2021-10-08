@@ -62,24 +62,7 @@ session_start();
 <br>
 <br>
 
-<!-- ========================= SECTION PAGETOP ========================= -->
-<section class="section-pagetop bg-primary">
-<div class="container" >
-	<h2 class="title-page text-white" style="font-family:Roboto; text-transform: uppercase">my profile</h2>
-</div> <!-- container //  -->
-</section>
-<!-- ========================= SECTION INTRO END// ========================= -->
-
 <!-- ============================ COMPONENT 2  ================================= -->
-
-<div class="row">
-<aside class="col-md-3">
-		<ul class="list-group">
-			<a class="list-group-item" href="profile.php"> Account overview  </a>
-			<a class="list-group-item" href="profileorder.php"> My Orders </a>
-			<a class="list-group-item active" href="shoppingcart.php"> My wishlist </a>
-		</ul>
-	</aside> <!-- col.// -->
 <div class="card">
 <div class="row no-gutters">
 	<aside class="col-md-9">
@@ -157,7 +140,6 @@ session_start();
 	</aside> <!-- col.// -->
 </div> <!-- row.// -->
 </div> <!-- card.// -->
-</div> <!-- row.// --> 
 <!-- ============================ COMPONENT 2 END .// ================================= -->
 
 
