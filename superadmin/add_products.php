@@ -132,7 +132,7 @@ $lastInsertId = $dbh->lastInsertId();
 						<div class="col-sm-2">
 						<select class="selectpicker" name="Producttype" required>
 						<option value=""> Select </option>
-						<?php $ret="select typename from type";
+						<?php $ret="select id,typename from type";
 						$query= $dbh -> prepare($ret);
 						//$query->bindParam(':id',$id, PDO::PARAM_STR);
 						$query-> execute();
@@ -142,7 +142,7 @@ $lastInsertId = $dbh->lastInsertId();
 						foreach($results as $result)
 						{
 						?>
-						<option value="<?php echo htmlentities($result->typename);?>"><?php echo htmlentities($result->typename);?></option>
+						<option value="<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->typename);?></option>
 						<?php }} ?>
 
 						</select>

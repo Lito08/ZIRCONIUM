@@ -275,7 +275,7 @@ session_start();
 				  <dd class="h5">RM<?php echo $sum;?></dd>
 				</dl>
 				<hr>
-				<p class="small mb-3 text-muted">By clicking buy you are agreed with <a href="tac.php" class="card-product" style="color:blue">terms & conditions</a>. </p>
+				<p class="small mb-3 text-muted">By clicking buy you are agreed with <a target="_blank" href="tac.php" class="card-product" style="color:blue">terms & conditions</a>. </p>
 				
 				<button type="submit" class="btn btn-primary btn-block"  name="submit">Buy</button>
 				
