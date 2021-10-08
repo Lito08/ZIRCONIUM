@@ -45,10 +45,6 @@ session_start();
 			{
 			$msg="You have purchased successfully";
 			echo("<script>window.location = 'index.php';</script>");
-<<<<<<< Updated upstream
-=======
-			mysqli_query($con,"TRUNCATE TABLE cart");
->>>>>>> Stashed changes
 			}
 			else
 			{
