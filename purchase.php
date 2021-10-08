@@ -45,6 +45,7 @@ session_start();
 			{
 			$msg="You have purchased successfully";
 			echo("<script>window.location = 'index.php';</script>");
+			mysqli_query($con,"TRUNCATE TABLE cart");
 			}
 			else
 			{

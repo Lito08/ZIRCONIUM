@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2021 at 04:10 PM
+-- Generation Time: Oct 08, 2021 at 04:47 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -56,15 +56,6 @@ CREATE TABLE `cart` (
   `price` decimal(10,2) NOT NULL,
   `Status` int(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`cart_id`, `User_id`, `item_id`, `userEmail`, `quantity`, `price`, `Status`) VALUES
-(138, 0, 2, 'lit0', 0, '200.00', 0),
-(139, 0, 3, 'lit0', 0, '140.00', 0),
-(140, 0, 4, 'lit0', 0, '200.00', 0);
 
 -- --------------------------------------------------------
 
@@ -186,9 +177,9 @@ CREATE TABLE `sale` (
 --
 
 INSERT INTO `sale` (`id`, `dop`, `User`, `house`, `street`, `city`, `postalCode`, `state`, `country`, `courier`, `payment`, `quantity`, `item`) VALUES
-(14, '2021-10-08 14:09:38', 'lit0', 'No.2', 'Jalan Anggun 3H,', 'Rawang', '48200', 'Selangor', 'Malaysia', 'DHL', '', 0, 2),
-(15, '2021-10-08 14:09:38', 'lit0', 'No.2', 'Jalan Anggun 3H,', 'Rawang', '48200', 'Selangor', 'Malaysia', 'DHL', '', 0, 3),
-(16, '2021-10-08 14:09:38', 'lit0', 'No.2', 'Jalan Anggun 3H,', 'Rawang', '48200', 'Selangor', 'Malaysia', 'DHL', '', 0, 4);
+(23, '2021-10-08 14:46:22', 'lit0', 'No.2', 'Jalan Anggun 3H,', 'Kuala Lumpur', '48200', 'Selangor', 'Malaysia', 'J&T', '', 0, 2),
+(24, '2021-10-08 14:46:22', 'lit0', 'No.2', 'Jalan Anggun 3H,', 'Kuala Lumpur', '48200', 'Selangor', 'Malaysia', 'J&T', '', 0, 3),
+(25, '2021-10-08 14:46:23', 'lit0', 'No.2', 'Jalan Anggun 3H,', 'Kuala Lumpur', '48200', 'Selangor', 'Malaysia', 'J&T', '', 0, 4);
 
 -- --------------------------------------------------------
 
@@ -370,7 +361,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `cart_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `contactusquery`
@@ -400,7 +391,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `sale`
 --
 ALTER TABLE `sale`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `supplier`
