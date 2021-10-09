@@ -66,7 +66,7 @@ $(document).ready(function() {
 				<li><a href="products/sports.php">Sports & Lifestyle</a></li>
 				<li><a href="products/hab.php">Health & Beauty</a></li>
 				<li><a href="products/appliances.php">Appliances</a></li>
-				<li><a href="products/electronics">Electronics</a></li>
+				<li><a href="products/electronics.php">Electronics</a></li>
 				<li><a href="products/babies.php">Babies & Toys</a></li>
 				<li><a href="products/automotive.php">Automotive & Motorcycles</a></li>
 				<li class="has-submenu"><a href="">Others</a>

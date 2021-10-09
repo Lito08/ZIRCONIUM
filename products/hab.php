@@ -18,7 +18,7 @@ session_start();
 <meta http-equiv="cache-control" content="max-age=604800" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>Zirconium - Frozen</title>
+<title>Zirconium - Health & Beauty</title>
 
 <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
 

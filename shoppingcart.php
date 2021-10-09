@@ -5,7 +5,7 @@ session_start();
     include("connection.php");
     include("functions.php");
 
-	$result = mysqli_query($con, 'SELECT SUM(price) As val FROM cart');
+	$result = mysqli_query($con, 'SELECT SUM(Total) As val FROM cart');
 	$row = mysqli_fetch_assoc($result);
 	$sum = $row['val'];
 	
@@ -69,7 +69,7 @@ session_start();
 	<?php
 	$total = 0;
 	$useremail=$_SESSION['user_id'];
-	$sql = "SELECT products.Vimage1 as Vimage1,products.price,products.title,products.id as pid,type.typename,cart.cart_id,cart.Status,cart.price as rice from cart join products on cart.item_id=products.id join type on type.id=products.ptype where cart.User_id=:useremail";
+	$sql = "SELECT products.Vimage1 as Vimage1,products.price,products.title,products.id as pid,type.typename,cart.cart_id,cart.Total,cart.quantity,cart.price as rice from cart join products on cart.item_id=products.id join type on type.id=products.ptype where cart.User_id=:useremail";
 	$query = $dbh -> prepare($sql);
 	$query-> bindParam(':useremail', $useremail, PDO::PARAM_STR);
 	$query->execute();
@@ -107,7 +107,7 @@ session_start();
 							  <div class="input-group-prepend">
 							    <button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-plus"></i> </button>
 							  </div>
-							  <input type="text" name="quantity" class="form-control"  value="1">
+							  <input type="text" name="quantity" class="form-control"  value="<?php echo htmlentities($result->quantity) ?>">
 							  <div class="input-group-append">
 							    <button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-minus"></i> </button>
 							  </div>

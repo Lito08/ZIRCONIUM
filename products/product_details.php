@@ -62,15 +62,17 @@ if(isset($_POST['submit']))
 
 	$useremail=$_SESSION['user_id'];
 	$vhid = $_GET['vhid'];
-	$status = 0;
+	$quan = $_POST['quantity'];
 	$Pprice = $result->price;
-	$sql="INSERT INTO cart(userEmail,item_id,price,Status) VALUES(:useremail,:vhid,:Pprice,:status)";
+	$total = $result->price * $quan;
+	$sql="INSERT INTO cart(userEmail,item_id,quantity,price,Total) VALUES(:useremail,:vhid,:quan,:Pprice,:total)";
 
 	$query = $dbh->prepare($sql);
 	$query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
 	$query->bindParam(':vhid',$vhid,PDO::PARAM_STR);
+	$query->bindParam(':quan',$quan,PDO::PARAM_STR);
 	$query->bindParam(':Pprice',$Pprice,PDO::PARAM_STR);
-	$query->bindParam(':status',$status,PDO::PARAM_STR);
+	$query->bindParam(':total',$total,PDO::PARAM_STR);
 	$query->execute();
 	$lastInsertId = $dbh->lastInsertId();
 	if($lastInsertId)
@@ -144,15 +146,18 @@ if(isset($_POST['submit']))
 	<div class="row">
 		<div class="form-group col-md flex-grow-0">
 			<label>Quantity</label>
-			<div class="input-group mb-3 input-spinner">
-			  <div class="input-group-prepend">
-			    <button class="btn btn-light" type="button" id="button-plus"> + </button>
-			  </div>
-			  <input type="text" class="form-control" value="1">
-			  <div class="input-group-append">
-			    <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
-			  </div>
-			</div>
+			<form method="post">
+				<div class="input-group mb-3 input-spinner">
+					<div class="input-group-prepend">
+						<button class="btn btn-light" type="button" id="button-plus"> + </button>
+					</div>
+
+					<input type="text" name="quantity" class="form-control" value="1">
+
+					<div class="input-group-append">
+						<button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
+					</div>
+				</div>
 		</div> <!-- col.// -->
 		<div class="form-group col-md">
 				<label></label>
@@ -180,7 +185,7 @@ if(isset($_POST['submit']))
     <?php if($_SESSION['user_id'])
     {?>
 
-	<form method="post">
+	
 	<div class="form-group">
 		<input type="submit" class="btn  btn-primary"  name="submit" value="Buy Now">
         <input type="submit" class="btn  btn-outline-primary"  name="submit" value="Add to cart">

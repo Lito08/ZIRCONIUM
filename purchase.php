@@ -5,7 +5,7 @@ session_start();
     include("connection.php");
     include("functions.php");
 
-	$result = mysqli_query($con, 'SELECT SUM(price) As val FROM cart');
+	$result = mysqli_query($con, 'SELECT SUM(Total) As val FROM cart');
 	$row = mysqli_fetch_assoc($result);
 	$sum = $row['val'];
 
