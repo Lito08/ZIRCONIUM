@@ -8,6 +8,7 @@ session_start();
 ?>
     
 <?php
+
 $user_id = $_SESSION['user_id'];
 $sql = "SELECT * FROM users WHERE user_name = '$user_id'; ";
 $result = mysqli_query($con, $sql);
@@ -22,7 +23,6 @@ else
 {
 	echo "no record found";
 }
-
 ?>
 
 
@@ -107,12 +107,11 @@ $(document).ready(function() {
 			<a class="list-group-item active" href="profile.php"> Account overview  </a>
 			<a class="list-group-item" href="profileorder.php"> My Orders </a>
 			<a class="list-group-item" href="shoppingcart.php"> My wishlist </a>
-			<a class="list-group-item" href="#"> Return and refunds </a>
 		</ul>
 	</aside> <!-- col.// -->
 	<main class="col-md-9">
 
-		<article class="card mb-3" style="background-color:#eaf0fd">
+		<article class="card mb-3" >
 			<div class="card-body">				
 				<figure class="icontext">
 						<div class="text" style="font-family:Noto Sans JP" >
@@ -134,7 +133,7 @@ $(document).ready(function() {
 					 <?php echo $row['city'];?> 
 					 <br> 
 
-					<a href="#" class="btn-link"> Edit</a>
+					<a href="editprofile.php" class="btn-link"> Edit</a>
 				</p>
 
 				
