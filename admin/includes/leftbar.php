@@ -15,7 +15,7 @@
 					</ul>
 </li>
 
-<li><a href="manage_products.php"><i class="fa fa-desktop"></i>Orders</a></li>
+<li><a href="sale.php"><i class="fa fa-desktop"></i>Manage Total Sales</a></li>
 
 	</ul>
 </nav>
