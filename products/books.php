@@ -97,12 +97,13 @@ $(document).ready(function() {
 				</form>
 				
 				<ul class="list-menu">
-				<li><a href="#">Fish  </a></li>
-				<li><a href="#">Crab </a></li>
-				<li><a href="#">Lobster  </a></li>
-				<li><a href="#">Octopus  </a></li>
-				<li><a href="#">Abalone </a></li>
-				<li><a href="#">Oyster</a></li>
+				<li><a href="hab.php">Health & Beauty</a></li>
+				<li><a href="electronics.php">Electronics</a></li>
+				<li><a href="sports.php">Sports & Lifestyle</a></li>
+				<li><a href="babies.php">Babies & Toys</a></li>
+				<li><a href="books.php">Books</a></li>
+				<li><a href="appliances.php">Appliances</a></li>
+				<li><a href="automotive.php">Automotive & Motocycles</a></li>
 				</ul>
 
 			</div> <!-- card-body.// -->
@@ -115,14 +116,27 @@ $(document).ready(function() {
 				<h6 class="title">Brands </h6>
 			</a>
 		</header>
+		<?php
+		$sql ="SELECT id,brand from products WHERE ptype='10' ";
+		$query = $dbh -> prepare($sql);
+		$query->execute();
+		$results=$query->fetchAll(PDO::FETCH_OBJ);
+		$cnt=1;
+		if($query->rowCount() > 0)
+		{
+		foreach($results as $result)
+		{
+		?>
 		<div class="filter-content collapse show" id="collapse_2" style="">
 			<div class="card-body">
 				<label class="custom-control custom-checkbox">
 				  <input type="checkbox" checked="" class="custom-control-input">
-				  <div class="custom-control-label">Regal Salmon
-				  	<b class="badge badge-pill badge-light float-right">1</b>  </div>
-	</div> <!-- card-body.// -->
+				  <div class="custom-control-label"><?php echo htmlentities($result->brand);?>
+				  	<b class="badge badge-pill badge-light float-right">1</b>  
+				  </div>
+			</div> <!-- card-body.// -->
 		</div>
+		<?php }}?>
 	</article> <!-- filter-group .// -->
 	<article class="filter-group">
 		<header class="card-header">

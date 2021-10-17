@@ -100,8 +100,10 @@ $(document).ready(function() {
 				</form>
 				
 				<ul class="list-menu">
-				<li><a href="#">Snacks</a></li>
-				<li><a href="#">Drinks</a></li>
+				<li><a href="groceries.php">Groceries</a></li>
+				<li><a href="frozen.php">Frozen</a></li>
+				<li><a href="freshproducts.php">Fresh Products</a></li>
+				<li><a href="confectioneries.php">Confectioneries</a></li>
 				</ul>
 
 			</div> <!-- card-body.// -->
@@ -114,14 +116,27 @@ $(document).ready(function() {
 				<h6 class="title">Brands </h6>
 			</a>
 		</header>
+		<?php
+		$sql ="SELECT id,brand from products WHERE ptype='4' ";
+		$query = $dbh -> prepare($sql);
+		$query->execute();
+		$results=$query->fetchAll(PDO::FETCH_OBJ);
+		$cnt=1;
+		if($query->rowCount() > 0)
+		{
+		foreach($results as $result)
+		{
+		?>
 		<div class="filter-content collapse show" id="collapse_2" style="">
 			<div class="card-body">
 				<label class="custom-control custom-checkbox">
 				  <input type="checkbox" checked="" class="custom-control-input">
-				  <div class="custom-control-label">Regal Salmon
-				  	<b class="badge badge-pill badge-light float-right">1</b>  </div>
-	</div> <!-- card-body.// -->
+				  <div class="custom-control-label"><?php echo htmlentities($result->brand);?>
+				  	<b class="badge badge-pill badge-light float-right">1</b>  
+				  </div>
+			</div> <!-- card-body.// -->
 		</div>
+		<?php }}?>
 	</article> <!-- filter-group .// -->
 	<article class="filter-group">
 		<header class="card-header">
