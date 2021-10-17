@@ -132,84 +132,18 @@ $(document).ready(function() {
 					 <br>
 					 <?php echo $row['city'];?> 
 					 <br> 
-
-					<a href="editprofile.php" class="btn-link"> Edit</a>
+					<br>
+					<a href="editprofile.php" class="btn-link"> Edit your profile here!</a>
 				</p>
 
 				
 
-				<article class="card-group" >
-					<figure class="card bg" style="background-color:#eaf0fd">
-						<div class="p-3">
-							 <h5 class="card-title" >38</h5>
-							<span>Orders</span>
-						</div>
-					</figure>
-					<figure class="card bg" style="background-color:#eaf0fd">
-						<div class="p-3">
-							 <h5 class="card-title">5</h5>
-							<span>Wishlists</span>
-						</div>
-					</figure>
-					<figure class="card bg" style="background-color:#eaf0fd">
-						<div class="p-3">
-							 <h5 class="card-title">12</h5>
-							<span>Awaiting delivery</span>
-						</div>
-					</figure>
-					<figure class="card bg" style="background-color:#eaf0fd">
-						<div class="p-3">
-							 <h5 class="card-title">50</h5>
-							<span>Delivered items</span>
-						</div>
-					</figure>
-				</article>
-				
+			
 
 			</div> <!-- card-body .// -->
 		</article> <!-- card.// -->
 
-		<article class="card  mb-3">
-			<div class="card-body">
-				<h5 class="card-title mb-4">Recent orders </h5>	
-
-				<div class="row">
-				<div class="col-md-6">
-					<figure class="itemside  mb-3">
-						<div class="aside"><img src="images/items/1.jpg" class="border img-sm"></div>
-						<figcaption class="info">
-							<time class="text-muted"><i class="fa fa-calendar-alt"></i> 12.09.2019</time>
-							<p>Great item name goes here </p>
-							<span class="text-warning">Pending</span>
-						</figcaption>
-					</figure>
-				</div> <!-- col.// -->
-				<div class="col-md-6">
-					<figure class="itemside  mb-3">
-						<div class="aside"><img src="images/items/2.jpg" class="border img-sm"></div>
-						<figcaption class="info">
-							<time class="text-muted"><i class="fa fa-calendar-alt"></i> 12.09.2019</time>
-							<p>Machine for kitchen to blend </p>
-							<span class="text-success">Departured</span>
-						</figcaption>
-					</figure>
-				</div> <!-- col.// -->
-				<div class="col-md-6">
-					<figure class="itemside mb-3">
-						<div class="aside"><img src="images/items/3.jpg" class="border img-sm"></div>
-						<figcaption class="info">
-							<time class="text-muted"><i class="fa fa-calendar-alt"></i> 12.09.2019</time>
-							<p>Ladies bag original leather </p>
-							<span class="text-success">Shipped  </span>
-						</figcaption>
-					</figure>
-				</div> <!-- col.// -->
-			</div> <!-- row.// -->
-
-			<a href="profileorder.php" class="btn btn-outline-primary"> See all orders  </a>
-			</div> <!-- card-body .// -->
-		</article> <!-- card.// -->
-
+	
 	</main> <!-- col.// -->
 </div>
 
