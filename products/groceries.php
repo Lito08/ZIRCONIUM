@@ -5,8 +5,6 @@ session_start();
     include("../functions.php");
 	include("../connection.php");
 
-	
-
 ?>
 
 
@@ -229,7 +227,7 @@ $(document).ready(function() {
 	</aside> <!-- col.// -->
 	<main class="col-md-9">
 
-	<?php
+<?php
 $sql ="SELECT id from products WHERE ptype='2' ";
 $query = $dbh -> prepare($sql);
 $query->execute();
@@ -255,7 +253,8 @@ $regusers=$query->rowCount();
 		</div>
 </header><!-- sect-heading -->
 
-<?php $sql = "SELECT products.ribbon,products.title,type.typename,type.id,products.price,products.id,products.description,products.Vimage1 from products join type on type.id=products.ptype WHERE type.id='2'";
+<?php
+$sql = "SELECT products.ribbon,products.title,type.typename,type.id,products.price,products.id,products.description,products.Vimage1 from products join type on type.id=products.ptype WHERE type.id='2'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -264,8 +263,34 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {
-?>
+	$pid = $result -> id;
 
+		if(isset($_POST['submit']))
+		{
+
+			$useremail=$_SESSION['user_id'];
+			$vhid = $pid;
+			$sql="INSERT INTO wishlist(userEmail,item_id) VALUES(:useremail,:vhid)";
+
+			$query = $dbh->prepare($sql);
+			$query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
+			$query->bindParam(':vhid',$vhid,PDO::PARAM_STR);
+			$query->execute();
+			$lastInsertId = $dbh->lastInsertId();
+			if($lastInsertId)
+			{
+				echo "<script>alert('Product has been added to wishlist.');</script>";
+				echo("<script>window.location = '../profile.php';</script>");
+			}
+			else
+			{
+				
+			}
+
+		}
+
+?>
+<form method="post">
 <article class="card card-product-list">
 	<div class="row no-gutters">
 		<aside class="col-md-3">
@@ -306,15 +331,28 @@ foreach($results as $result)
 				<br>
 				<p>
 					<a href="product_details.php?vhid=<?php echo htmlentities($result->id);?>" class="btn btn-primary btn-block"> Details </a>
-					<a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i> 
-						<span class="text">Add to wishlist</span>
+					<br>
+					<?php if(isset($_SESSION['user_id']))
+    				{
+						
+					?>
+					
+					<div class="form-group">
+					<input type="submit" class="btn btn-light btn-block"  name="submit" value="Add to wishlist">
+					</div>
+					
+					<?php } else { ?>
+
+					<a href="../login.php" class="btn btn-light btn-block"><i class="fa fa-heart"></i> 
+					<span class="text">Add to wishlist</span>
 					</a>
+					<?php } ?>
 				</p>
 			</div> <!-- info-aside.// -->
 		</aside> <!-- col.// -->
 	</div> <!-- row.// -->
 </article> <!-- card-product .// -->
-
+</form>
 <?php }}?>
 
 <nav aria-label="Page navigation sample">
