@@ -5,8 +5,6 @@ session_start();
     include("../functions.php");
 	include("../connection.php");
 
-	
-
 ?>
 
 
@@ -229,7 +227,7 @@ $(document).ready(function() {
 	</aside> <!-- col.// -->
 	<main class="col-md-9">
 
-	<?php
+<?php
 $sql ="SELECT id from products WHERE ptype='2' ";
 $query = $dbh -> prepare($sql);
 $query->execute();
@@ -255,7 +253,8 @@ $regusers=$query->rowCount();
 		</div>
 </header><!-- sect-heading -->
 
-<?php $sql = "SELECT products.ribbon,products.title,type.typename,type.id,products.price,products.id,products.description,products.Vimage1 from products join type on type.id=products.ptype WHERE type.id='2'";
+<?php
+$sql = "SELECT products.ribbon,products.title,type.typename,type.id,products.price,products.id,products.description,products.Vimage1 from products join type on type.id=products.ptype WHERE type.id='2'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -264,8 +263,12 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {
-?>
+	$pid = $result -> id;
 
+	
+
+?>
+<form method="post">
 <article class="card card-product-list">
 	<div class="row no-gutters">
 		<aside class="col-md-3">
@@ -293,7 +296,7 @@ foreach($results as $result)
 					<div class="label-rating">10/10</div>
 				</div> <!-- rating-wrap.// -->
 				
-				<p> <?php echo substr($result->description,0,70);?> </p>
+				<p> <?php echo substr($result->description,0,150);?>... </p>
 			</div> <!-- info-main.// -->
 		</div> <!-- col.// -->
 		<aside class="col-sm-3">
@@ -306,16 +309,13 @@ foreach($results as $result)
 				<br>
 				<p>
 					<a href="product_details.php?vhid=<?php echo htmlentities($result->id);?>" class="btn btn-primary btn-block"> Details </a>
-					<a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i> 
-						<span class="text">Add to wishlist</span>
-					</a>
 				</p>
 			</div> <!-- info-aside.// -->
 		</aside> <!-- col.// -->
 	</div> <!-- row.// -->
 </article> <!-- card-product .// -->
-
-<?php }}?>
+</form>
+<?php }} ?>
 
 <nav aria-label="Page navigation sample">
   <ul class="pagination">

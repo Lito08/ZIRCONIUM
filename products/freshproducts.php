@@ -293,7 +293,7 @@ foreach($results as $result)
 					<div class="label-rating">10/10</div>
 				</div> <!-- rating-wrap.// -->
 				
-				<p> <?php echo substr($result->description,0,70);?> </p>
+				<p> <?php echo substr($result->description,0,150);?>... </p>
 			</div> <!-- info-main.// -->
 		</div> <!-- col.// -->
 		<aside class="col-sm-3">
@@ -306,9 +306,6 @@ foreach($results as $result)
 				<br>
 				<p>
 					<a href="product_details.php?vhid=<?php echo htmlentities($result->id);?>" class="btn btn-primary btn-block"> Details </a>
-					<a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i> 
-						<span class="text">Add to wishlist</span>
-					</a>
 				</p>
 			</div> <!-- info-aside.// -->
 		</aside> <!-- col.// -->

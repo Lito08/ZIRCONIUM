@@ -65,7 +65,7 @@ if(isset($_POST['submit']))
 	$quan = $_POST['quantity'];
 	$Pprice = $result->price;
 	$total = $result->price * $quan;
-	$sql="INSERT INTO cart(userEmail,item_id,quantity,price,Total) VALUES(:useremail,:vhid,:quan,:Pprice,:total)";
+	$sql="INSERT INTO cart(userEmail,item_id,quantity,price,Total) VALUES (:useremail,:vhid,:quan,:Pprice,:total)";
 
 	$query = $dbh->prepare($sql);
 	$query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
@@ -79,6 +79,30 @@ if(isset($_POST['submit']))
 	{
 		echo "<script>alert('Product has been added to shopping cart.');</script>";
 		echo("<script>window.location = '../shoppingcart.php';</script>");
+	}
+	else
+	{
+		
+	}
+
+}
+
+if(isset($_POST['wish']))
+{
+
+	$useremail=$_SESSION['user_id'];
+	$vhid = $_GET['vhid'];
+	$sql="INSERT INTO wishlist(userEmail,item_id) VALUES (:useremail,:vhid)";
+
+	$query = $dbh->prepare($sql);
+	$query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
+	$query->bindParam(':vhid',$vhid,PDO::PARAM_STR);
+	$query->execute();
+	$lastInsertId = $dbh->lastInsertId();
+	if($lastInsertId)
+	{
+		echo "<script>alert('Product has been added to your wishlist.');</script>";
+		echo("<script>window.location = '../wishlist.php';</script>");
 	}
 	else
 	{
@@ -187,8 +211,8 @@ if(isset($_POST['submit']))
 
 	
 	<div class="form-group">
-		<input type="submit" class="btn  btn-primary"  name="submit" value="Buy Now">
-        <input type="submit" class="btn  btn-outline-primary"  name="submit" value="Add to cart">
+		<input type="submit" class="btn  btn-outline-primary"  name="submit" value="Add to cart">
+		<input type="submit" class="btn  btn-primary"  name="wish" value="Add to wishlist">
     </div>
 
     <?php } else { ?>

@@ -4,15 +4,6 @@
 		<section class="footer-top padding-y">
 			<div class="row">
 				<aside class="col-md col-6">
-					<h6 class="title">Brands</h6>
-					<ul class="list-unstyled">
-						<li> <a href="#">Iphone</a></li>
-						<li> <a href="#">Samsung</a></li>
-						<li> <a href="#">Adidas</a></li>
-						<li> <a href="#">Nike</a></li>
-					</ul>
-				</aside>
-				<aside class="col-md col-6">
 					<h6 class="title">Company</h6>
 					<ul class="list-unstyled">
 						<li> <a href="../aboutus.php" target="_blank">About us</a></li>

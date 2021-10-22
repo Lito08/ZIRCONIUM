@@ -55,11 +55,11 @@ session_start();
         <div class="form-row">
 			<div class="col form-group">
 				<label>Name</label>
-			  	<input type="text" class="form-control" placeholder="">
+			  	<input type="text" class="form-control" placeholder="Your Name Here">
 			</div> <!-- form-group end.// -->
 			<div class="col form-group">
 				<label>Email</label>
-			  	<input type="email" class="form-control" placeholder="">
+			  	<input type="email" class="form-control" placeholder="Your Email Here">
 			</div> <!-- form-group end.// -->
 		</div> <!-- form-row.// -->
 		<div class="form-group">

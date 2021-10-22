@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   $useremail=$_SESSION['user_id'];
-  //delete
+  //delete cart
       if (isset($_POST['delete-cart-submit'])){
     $cart_to_delete = mysqli_real_escape_string($con, $_POST['item_id']);
     $sql = "DELETE FROM cart WHERE item_id = $cart_to_delete";
@@ -14,8 +14,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
       echo "<script>alert('Failed to delete item.');</script>";
     }
 
-      }
-  }
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+  $useremail=$_SESSION['user_id'];
+  //delete wishlist
+      if (isset($_POST['delete-wishlist-submit'])){
+    $wishlist_to_delete = mysqli_real_escape_string($con, $_POST['item_id']);
+    $sql = "DELETE FROM wishlist WHERE item_id = $wishlist_to_delete";
+
+    if(mysqli_query($con, $sql))
+    {
+      echo "<script>alert('Product has been removed.');</script>";
+      echo("<script>window.location = 'wishlist.php';</script>");
+    }else{
+      echo "<script>alert('Failed to delete item.');</script>";
+    }
+
+    }
+}
 ?>
 <header class="section-header">
 
