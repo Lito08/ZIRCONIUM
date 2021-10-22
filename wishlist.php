@@ -13,7 +13,6 @@ session_start();
 	if(mysqli_num_rows($results) == 0)
 	{
 		echo '<div id="content" class="col-md-7"><div align="center"><h3>Your wishlist is empty.</h3> You can find our items on our <a href="index.php">product page</a>.</div></div><div class="col-md-7"></div>';
-		mysqli_query($con,"TRUNCATE TABLE wishlist");
 	}
 	else
 	{
