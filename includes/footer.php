@@ -37,10 +37,10 @@
 				<aside class="col-md">
 					<h6 class="title">Social</h6>
 					<ul class="list-unstyled">
-						<li><a href="#"> <i class="fab fa-facebook"></i> Facebook </a></li>
-						<li><a href="#"> <i class="fab fa-twitter"></i> Twitter </a></li>
-						<li><a href="#"> <i class="fab fa-instagram"></i> Instagram </a></li>
-						<li><a href="#"> <i class="fab fa-youtube"></i> Youtube </a></li>
+						<li><a href="https://www.facebook.com/profile.php?id=100059688526742" target="_blank"> <i class="fab fa-facebook"></i> Facebook </a></li>
+						<li><a href="https://twitter.com/ZirconiumOffic1" target="_blank"> <i class="fab fa-twitter"></i> Twitter </a></li>
+						<li><a href="https://www.instagram.com/zirconium.official/" target="_blank"> <i class="fab fa-instagram"></i> Instagram </a></li>
+						<li><a href="https://www.youtube.com/channel/UCFYNBZi4TjWDGLJ3jfaKt2g" target="_blank"> <i class="fab fa-youtube"></i> Youtube </a></li>
 					</ul>
 				</aside>
 			</div> <!-- row.// -->

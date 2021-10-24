@@ -1,10 +1,8 @@
 <?php 
 
-session_start();
-
+	include("google.php");
 	include("connection.php");
 	include("functions.php");
-
 
 	if($_SERVER['REQUEST_METHOD'] == "POST")
 	{
@@ -37,7 +35,8 @@ session_start();
 			}
 			
 			echo "wrong username or password!";
-		}else
+		}
+		else
 		{
 			echo "wrong username or password!";
 		}
@@ -121,7 +120,7 @@ $(document).ready(function() {
 				<div class="text">
 					<span class="text-muted">Welcome!</span>
 					<div> 
-						<a href="login.php">Sign in</a> |  
+						<a name="login" href="login.php">Sign in</a> |  
 						<a href="signup.php"> Register</a>
 					</div>
 				</div>
@@ -144,8 +143,8 @@ $(document).ready(function() {
       <div class="card-body">
       <h4 class="card-title mb-4">Sign in</h4>
       <form method="post">
-      	  <a href="#" class="btn btn-facebook btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp  Sign in with Facebook</a>
-      	  <a href="#" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Sign in with Google</a>
+      	  <a href="#" class="btn btn-facebook btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp  Sign up with Facebook</a>
+      	  <a href="vendor/index.php" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Sign up with Google</a>
           <div class="form-group">
 			 <input id="text" type="text" name="user_name" class="form-control" placeholder="Username">
           </div> <!-- form-group// -->

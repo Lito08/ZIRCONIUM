@@ -10,8 +10,20 @@ else{
 // Code for replying to user's email
 if(isset($_POST['submit']))
 {
+    $to = "official.zirconium@gmail.com";
+    $from = $_POST['email'];
+    $name = $_POST['name'];
+    $subject = "Form submission";
+    $subject2 = "Copy of your form submission";
+    $message = $name . "wrote the following:" . "\n\n" . $_POST['message'];
+    $message2 = "Here is a copy of your message" . $name . "\n\n" . $_POST['message'];
 
-
+    $headers = "From:" . $from;
+    $headers2 = "From:" . $to;
+    mail($to,$subject,$message,$headers);
+    mail($from,$subject2,$message2,$headers2);
+    echo "<script>alert('Mail Sent. Thank you " . $name . ", we will contact you shortly.');</script>";
+	echo("<script>window.location = 'manage-contactusquery.php';</script>");
 }
 ?>
 
@@ -103,10 +115,24 @@ foreach($results as $result)
 {
 ?>
 
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Name</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" name="name" class="form-control" value="<?php echo htmlentities($result->Name);?>" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Email</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" name="email" class="form-control" value="<?php echo htmlentities($result->Email);?>" required>
+                                                </div>
+                                            </div>
+
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Description</label>
 												<div class="col-sm-8">
-													<input type="longtext" class="form-control" value="<?php echo htmlentities($result->MembershipName);?>" name="membership" id="membership" required>
+                                                <textarea class="form-control" name="message" rows="5" cols="30" required></textarea>
 												</div>
 											</div>
 											<div class="hr-dashed"></div>
@@ -117,7 +143,7 @@ foreach($results as $result)
 											<div class="form-group">
 												<div class="col-sm-8 col-sm-offset-4">
 								
-													<button class="btn btn-primary" name="submit" type="submit">Submit</button>
+													<button class="btn btn-primary" name="submit" type="submit">Compose</button>
 												</div>
 											</div>
 

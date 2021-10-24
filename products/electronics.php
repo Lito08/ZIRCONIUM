@@ -164,68 +164,6 @@ $(document).ready(function() {
 			</div><!-- card-body.// -->
 		</div>
 	</article> <!-- filter-group .// -->
-	<article class="filter-group">
-		<header class="card-header">
-			<a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
-				<i class="icon-control fa fa-chevron-down"></i>
-				<h6 class="title">Sizes </h6>
-			</a>
-		</header>
-		<div class="filter-content collapse show" id="collapse_4" style="">
-			<div class="card-body">
-			  <label class="checkbox-btn">
-			    <input type="checkbox">
-			    <span class="btn btn-light"> XS </span>
-			  </label>
-
-			  <label class="checkbox-btn">
-			    <input type="checkbox">
-			    <span class="btn btn-light"> SM </span>
-			  </label>
-
-			  <label class="checkbox-btn">
-			    <input type="checkbox">
-			    <span class="btn btn-light"> LG </span>
-			  </label>
-
-			  <label class="checkbox-btn">
-			    <input type="checkbox">
-			    <span class="btn btn-light"> XXL </span>
-			  </label>
-		</div><!-- card-body.// -->
-		</div>
-	</article> <!-- filter-group .// -->
-	<article class="filter-group">
-		<header class="card-header">
-			<a href="#" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false" class="">
-				<i class="icon-control fa fa-chevron-down"></i>
-				<h6 class="title">More filter </h6>
-			</a>
-		</header>
-		<div class="filter-content collapse in" id="collapse_5" style="">
-			<div class="card-body">
-				<label class="custom-control custom-radio">
-				  <input type="radio" name="myfilter_radio" checked="" class="custom-control-input">
-				  <div class="custom-control-label">Any condition</div>
-				</label>
-
-				<label class="custom-control custom-radio">
-				  <input type="radio" name="myfilter_radio" class="custom-control-input">
-				  <div class="custom-control-label">Brand new </div>
-				</label>
-
-				<label class="custom-control custom-radio">
-				  <input type="radio" name="myfilter_radio" class="custom-control-input">
-				  <div class="custom-control-label">Used items</div>
-				</label>
-
-				<label class="custom-control custom-radio">
-				  <input type="radio" name="myfilter_radio" class="custom-control-input">
-				  <div class="custom-control-label">Very old</div>
-				</label>
-			</div><!-- card-body.// -->
-		</div>
-	</article> <!-- filter-group .// -->
 </div> <!-- card.// -->
 
 	</aside> <!-- col.// -->

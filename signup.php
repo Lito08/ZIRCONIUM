@@ -76,6 +76,7 @@ $(document).ready(function() {
 // jquery end
 </script>
 
+
 </head>
 <body>
 
@@ -104,7 +105,7 @@ $(document).ready(function() {
 	<div class="col-lg-4 col-sm-6 col-12">
 		<div class="widgets-wrap float-md-right">
 			<div class="widget-header  mr-3">
-				<a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></a>
+				<a href="shoppingcart.php" class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></a>
 				<span class="badge badge-pill badge-danger notify">0</span>
 			</div>
 			<div class="widget-header icontext">
@@ -220,7 +221,7 @@ $(document).ready(function() {
 			&copy Copyright 2019 All rights reserved
 		</p>
 		<p>
-			<a href="#">Terms and conditions</a>
+			<a target="_blank" href="tac.php">Terms and conditions</a>
 		</p>
 	</div><!-- //container -->
 </footer>

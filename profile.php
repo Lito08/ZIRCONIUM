@@ -115,12 +115,12 @@ $(document).ready(function() {
 			<div class="card-body">				
 				<figure class="icontext">
 						<div class="text" style="font-family:Noto Sans JP" >
-						<h1 style="text-transform: capitalize; font-size:25px" ><strong><?php echo $row['full_name'];?></strong><br></h1>
+						<h1 style="text-transform: capitalize; font-size:25px" >Hello <strong><?php echo $row['full_name'];?></strong>!<br></h1>
 
-						<p style="font-size:17px"><?php echo $row['user_name'];?> 
-						<br>  
-						<?php echo $row['gender'];?> <br> 
-						</p>	
+						<p style="font-size:17px"><strong>Username:</strong> "<?php echo $row['user_name'];?>"</p>
+						<p style="font-size:17px"><strong>Gender:</strong> "<?php echo $row['gender'];?>"</p>
+						<br>
+
 						</div>
 
 				</figure>

@@ -33,7 +33,6 @@
 					</ul>
 </li>
 
-<li><a href="manage-contactusquery.php"><i class="fa fa-desktop"></i>Queries</a></li>
 
 	</ul>
 </nav>

@@ -33,7 +33,7 @@ if($result=mysqli_query($con,$sql))
 	<div class="container">
 <div class="row align-items-center">
 	<div class="col-lg-2 col-4">
-		<a href="images/logos/Logo.png" class="brand-wrap">
+		<a href="../index.php" class="brand-wrap">
 			<img class="logo" src="images/logos/Logo.png">
 		</a> <!-- brand-wrap.// -->
 	</div>
@@ -109,9 +109,6 @@ if($result=mysqli_query($con,$sql))
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../aboutus.php" target="_blank">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Promotions</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="../supermarket.php">Supermarket</a>

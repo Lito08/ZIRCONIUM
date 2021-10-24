@@ -7,11 +7,11 @@ session_start();
 
 	if(isset($_POST["submit"]))
 	{
-		$name = $_POST["name"];
-		$email = $_POST["email"];
+		$name = $_POST["Name"];
+		$email = $_POST["Email Address"];
 		$phone = $_POST["phone"];
 		$about = $_POST["about"];
-		$description = $_POST["description"];
+		$description = $_POST["Message"];
 
 
 		$sql="INSERT INTO contactusquery(Name,Email,ContactNumber,About,Message) VALUES(:name,:email,:phone,:about,:description)";
@@ -92,14 +92,18 @@ session_start();
 					<label>Email</label>
 					  <input type="email" name="Email Address" class="form-control" placeholder="" required>
 				</div> <!-- form-group end.// -->
+				<div class="col form-group">
+					<label>Phone No.</label>
+					  <input type="text" name="phone" class="form-control" placeholder="" required>
+				</div> <!-- form-group end.// -->
 			</div> <!-- form-row.// -->
 			<div class="form-group">
 				<label>What is the message category?</label>
-				<select class="form-control">
+				<select name="about" class="form-control">
 					<option>Select</option>
-					<option>Technical issue</option>
-					<option>Money refund</option>
-					<option>Recommendation</option>
+					<option value="Technical issue">Technical issue</option>
+					<option value="Money refund">Money refund</option>
+					<option value="Recommendation">Recommendation</option>
 				</select>
 			</div>
 			<div class="form-group">
