@@ -82,7 +82,7 @@ if(isset($_POST['submit']))
 	}
 	else
 	{
-		
+		echo "<script>alert('Something went wrong. Please try again later.');</script>";
 	}
 
 }

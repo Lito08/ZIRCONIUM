@@ -1,7 +1,8 @@
 <?php 
 session_start();
 
-    include("connection.php");
+	include("connection.php");
+    include("config.php");
     include("functions.php");
 
 	if(isset($_POST["submit"]))
@@ -12,19 +13,25 @@ session_start();
 		$about = $_POST["about"];
 		$description = $_POST["description"];
 
-		$pname = rand(1000,10000)."-".$_FILES["file"]["name"];
-		$tname = $_FILES["file"]["tmp_name"];
-		$uploads_dir = '/images';
-		move_uploaded_file($tname, $uploads_dir.'/'.$pname);
 
-		$sql="INSERT INTO contactusquery(Name,Email,ContactNumber,About,Message,Vimage1) VALUES('$name','$email','$phone','$about','$description','$pname')";
-		if(mysqli_query($con,$sql))
+		$sql="INSERT INTO contactusquery(Name,Email,ContactNumber,About,Message) VALUES(:name,:email,:phone,:about,:description)";
+		$query = $dbh->prepare($sql);
+		$query->bindParam(':name',$name,PDO::PARAM_STR);
+		$query->bindParam(':email',$email,PDO::PARAM_STR);
+		$query->bindParam(':phone',$phone,PDO::PARAM_STR);
+		$query->bindParam(':about',$about,PDO::PARAM_STR);
+		$query->bindParam(':description',$description,PDO::PARAM_STR);
+		$query->execute();
+		$lastInsertId = $dbh->lastInsertId();
+		if($lastInsertId)
 		{
-			echo "Your message has succesfully posted to our expert team.";
+			echo "<script>alert('Message has succesfully sended to our expert team.');</script>";
+			echo("<script>window.location = 'index.php';</script>");
 		}
 		else
 		{
-			echo "Something went wrong. Please try again";
+			echo "<script>alert('Something went wrong. Please try again later.');</script>";
+			echo("<script>window.location = 'index.php';</script>");
 		}
 	}
 ?>

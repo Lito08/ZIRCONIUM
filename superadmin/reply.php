@@ -3,20 +3,17 @@ session_start();
 error_reporting(0);
 include('includes/connection.php');
 if(strlen($_SESSION['alogin'])==0)
-	{
+	{	
 header('location:index.php');
 }
 else{
-if(isset($_GET['del']))
+// Code for replying to user's email
+if(isset($_POST['submit']))
 {
-$id=$_GET['del'];
-$sql = "delete from users  WHERE id=:id";
-$query = $dbh->prepare($sql);
-$query -> bindParam(':id',$id, PDO::PARAM_STR);
-$query -> execute();
-$msg="Page data updated  successfully";
+
+
 }
- ?>
+?>
 
 <!doctype html>
 <html lang="en" class="no-js">
@@ -28,8 +25,8 @@ $msg="Page data updated  successfully";
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
-
-	<title>Zirconium Queries</title>
+	
+	<title>Zirconium - Reply to Query</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -65,86 +62,83 @@ $msg="Page data updated  successfully";
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
 		</style>
+
+
 </head>
 
 <body>
 	<?php include('includes/header.php');?>
-
 	<div class="ts-main-content">
-		<?php include('includes/leftbar.php');?>
+	<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
+
 				<div class="row">
 					<div class="col-md-12">
-						<h2 class="page-title">Registration Users</h2>
+					
+						<h2 class="page-title">Reply to query</h2>
 
-						<!-- Zero Configuration Table -->
-						<div class="panel panel-default">
-							<div class="panel-heading">List of users</div>
-							<div class="panel-body">
-							<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php }
+						<div class="row">
+							<div class="col-md-10">
+								<div class="panel panel-default">
+									<div class="panel-heading">Form fields</div>
+									<div class="panel-body">
+										<form method="post" name="replies" class="form-horizontal" onSubmit="return valid();">
+										
+											
+  	        	  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
 				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
-								<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-									<thead>
-										<tr>
-										<th>#</th>
-										<th>Username</th>
-										<th>Email </th>
-										<th>About</th>
-										<th>Contact No.</th>
-										<th>Message</th>
-										<th>Date</th>
-										<th>Action</th>
 
-										</tr>
-									</thead>
-									<tfoot>
-										<tr>
-										<th>#</th>
-										<th>Username</th>
-										<th>Email </th>
-										<th>About</th>
-										<th>Contact No</th>
-										<th>Message</th>
-										<th>Date</th>
-										<th>Action</th>
-
-										</tr>
-										</tr>
-									</tfoot>
-									<tbody>
-
-<?php 
-$sql = "SELECT * from  contactusquery ";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
+<?php	
+$id=$_GET['id'];
+$ret="SELECT * FROM contactusquery WHERE id=:id";
+$query= $dbh -> prepare($ret);
+$query->bindParam(':id',$id, PDO::PARAM_STR);
+$query-> execute();
+$results = $query -> fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
-if($query->rowCount() > 0)
+if($query -> rowCount() > 0)
 {
 foreach($results as $result)
-{				?>
-										<tr>
-											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($result->Name);?></td>
-											<td><?php echo htmlentities($result->Email);?></td>
-											<td><?php echo htmlentities($result->About);?></td>
-											<td><?php echo htmlentities($result->ContactNumber);?></td>
-											<td><?php echo htmlentities($result->Message);?></td>
-											<td><?php echo htmlentities($result->PostingDate);?></td>
-											<td><a href="reply.php?id=<?php echo $result->id;?>" onclick="return confirm('Do you want to reply?');"><i class="fa fa-edit"></i></a></td>
-										</tr>
-										<?php $cnt=$cnt+1; }} ?>
-									</tbody>
-								</table>
+{
+?>
 
+											<div class="form-group">
+												<label class="col-sm-4 control-label">Description</label>
+												<div class="col-sm-8">
+													<input type="longtext" class="form-control" value="<?php echo htmlentities($result->MembershipName);?>" name="membership" id="membership" required>
+												</div>
+											</div>
+											<div class="hr-dashed"></div>
+											
+										<?php }} ?>
+								
+											
+											<div class="form-group">
+												<div class="col-sm-8 col-sm-offset-4">
+								
+													<button class="btn btn-primary" name="submit" type="submit">Submit</button>
+												</div>
+											</div>
+
+										</form>
+
+									</div>
+								</div>
 							</div>
+							
 						</div>
+						
+					
+
 					</div>
 				</div>
+				
+			
 			</div>
 		</div>
 	</div>
+
 	<!-- Loading Scripts -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>
@@ -155,6 +149,8 @@ foreach($results as $result)
 	<script src="js/fileinput.js"></script>
 	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
+
 </body>
+
 </html>
 <?php } ?>
