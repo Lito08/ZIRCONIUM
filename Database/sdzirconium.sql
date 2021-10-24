@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2021 at 09:21 AM
+-- Generation Time: Oct 24, 2021 at 10:40 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -65,12 +65,13 @@ CREATE TABLE `cart` (
 
 CREATE TABLE `contactusquery` (
   `id` bigint(20) NOT NULL,
-  `name` varchar(120) DEFAULT NULL,
-  `EmailId` varchar(120) DEFAULT NULL,
-  `ContactNumber` char(11) DEFAULT NULL,
+  `Name` varchar(120) DEFAULT NULL,
+  `Email` varchar(120) DEFAULT NULL,
+  `About` varchar(120) NOT NULL,
+  `ContactNumber` varchar(120) DEFAULT NULL,
   `Message` longtext DEFAULT NULL,
-  `PostingDate` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` int(11) DEFAULT NULL
+  `Vimage1` varchar(120) NOT NULL,
+  `PostingDate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -158,7 +159,14 @@ INSERT INTO `products` (`id`, `ptype`, `title`, `price`, `perm`, `stock`, `brand
 (6, '1', 'Ice Cream', '34.50', 'ml', 0, 'Haagen Dazs', 'Haagen-Dazs ice cream tubs. Real indulgence with just four ingredients: real cream, milk, eggs and sugar. Haagen-Dazs is blended with carefully selected ingredients, to create a luxury ice cream with a unique velvety texture and unforgettable taste.', 'Popular', 'ic1.png', 'ic2.png', 'ic3.png', '', '2021-10-09 07:00:38', 0),
 (7, '4', 'Raw Chicken', '13.80', 'Kg', 0, 'Zirconium Fresh Grocer', 'Whole Chicken (Standard) With An Estimated Weight Of 1.5KG.', 'New', 'chicken1.png', 'chicken2.png', 'chicken3.png', '', '2021-10-09 07:08:50', 0),
 (8, '4', 'Salmon Fillet', '69.38', 'Kg', 0, 'Zirconium Fresh Grocer', 'Salmon Fillet with estimated weight of 1Kg. Please contact Zirconium Customer Service for selecting your fillet part (optional). Don\'t forget to give your order \"id\" for confirmation.', 'Popular', 'salmon2.png', 'salmon1.png', 'salmon3.png', '', '2021-10-09 07:14:04', 0),
-(9, '4', 'A5 Wagyu Beef Cut', '654.69', 'Kg', 0, 'Kobe Wagyu Beef', 'Wagyu beef—you know, the transcendently tender, fatty, umami-rich steak—has become as synonymous with luxury as caviar or black truffles. But no matter how many Michelin-starred menus this delicacy graces, all of the facts about Wagyu steak still tend to elude even the most seasoned diners. The best wagyu beef that you can buy is right here!', 'Popular', 'wagyu1.png', 'wagyu2.png', 'wagyu3.png', '', '2021-10-09 07:19:31', 0);
+(9, '4', 'A5 Wagyu Beef Cut', '654.69', 'Kg', 0, 'Kobe Wagyu Beef', 'Wagyu beef—you know, the transcendently tender, fatty, umami-rich steak—has become as synonymous with luxury as caviar or black truffles. But no matter how many Michelin-starred menus this delicacy graces, all of the facts about Wagyu steak still tend to elude even the most seasoned diners. The best wagyu beef that you can buy is right here!', 'Popular', 'wagyu1.png', 'wagyu2.png', 'wagyu3.png', '', '2021-10-09 07:19:31', 0),
+(10, '5', 'Eumenthol Candy', '9.19', 'Item', 0, 'HUDSON\'S', ' Hudson’s Eumenthol jujubes is a pure gum jujube, a gum base derived from the Acacia tree, with the combination of two main ingredients Eucalyptus and menthol. The product dissolves slowly in the mouth, providing a gradual release of the active ingredients for the relief of cough, sore throats and smokers’ throats, leaving a pleasant, refreshing sensation and fresh breath. It is also useful to singers and public speakers for clearing and strengthening the voice. Fast delivery within 2- 5 w/days. Flavors: Honey Lemon, Mint & Classic.', 'New', 'Jubjubs1.png', 'jubjubs2.png', 'jubjubs3.png', '', '2021-10-24 20:08:55', 0),
+(11, '5', 'Swiss Chocolate', '7.31', 'Item', 0, 'Toblerone', 'Toblerone is a Swiss chocolate bar made with honey and almond nougat. Created in 1908 by Theodor Tobler, Toblerone is now available around the world and is instantly recognized thanks to its unique chocolate peak shape and unmistakable packs. Made in Switzerland. Flavors: Classic Milk Chocolate, Dark Chocolate, White Chocolate & Milk Chocolate with Crunchy Almonds.', 'Popular', 'toblerone.png', 'toblerone2.png', 'toblerone3.jpg', '', '2021-10-24 20:17:57', 0),
+(12, '5', 'Chocolate bar', '4.39', 'Unit', 0, 'Kinder Bueno', 'Kinder Bueno is a chocolate bar made by Italian confectionery maker Ferrero. Kinder Bueno, part of the Kinder Chocolate brand line, is a hazelnut cream filled chocolate bar, that contains small amounts of wafer. It has been up for some debate whether a Kinder Bueno is a chocolate bar or a wafer. Bueno is a delicate chocolate bar with an indulgent taste. Each melt-in-the-mouth piece promises creamy hazelnut, smooth chocolate and crispy wafer for you to enjoy. It comes in single portions, individually wrapped.', 'New', 'bueno2.jpg', 'bueno1.jpg', 'bueno3.jpg', '', '2021-10-24 20:21:52', 0),
+(13, '6', 'Proactive Guard Overnight Wing', '11.90', 'Unit', 0, 'KOTEX', 'Embrace all-round protection against heavy flow and sudden gushes. With revolutionary rise-up guard features that provides you with up to 100% no back leaks during period nights. Sizes : 28cm, 32cm, 35cm, 41cm.', 'New', 'kotex.png', 'kotex2.jpg', 'kotex3.jpg', '', '2021-10-24 20:26:58', 0),
+(14, '6', 'Aloe Vera Gel', '25.66', 'Item', 0, 'Nature Republic', 'Enriched with natural aloe vera! This soothing gel with California aloe vera can be used to mildly moisturize various parts of the body such as the face, arms, legs, and hair. Suggested use: Apply an appropriate amount to dry, sensitive parts of the face and body often for the best results. Ingredients: Aloe barbadensis leaf extract (92%), alcohol, glyceryl polyacrylate, dipropylene glycol, butylene glycol, glycerin, propylene glycol, 1,2-hexanediol, polyglutamic acid, betaine, sodium hyaluronate, calendula officinalis flower extract, mentha viridis (spearmint) extract, melissa officinalis extract, carbomer, peg-60 hydrogenated castor oil, triethanolamine, phenoxyethanol, water, parfum, disodium edta, linalool, butylphenyl methylpropional. Warnings: For external use only. Avoid contact with eyes. Discontinue use if signs of irritation or rashes appear. Keep out of reach of children. Replace the cap after use. Disclaimer: While iHerb strives to ensure the accuracy of its product images', 'Popular', 'aloe1.jpg', 'aloe2.jpg', 'aloe3.jpg', '', '2021-10-24 20:32:23', 0),
+(15, '6', 'Gentle Skin Cleanser for Face & Body', '62.66', 'Bottle', 0, 'Cetaphil', 'Cetaphil Gentle Skin Cleanser gently cleans and moisturises without stripping skin’s natural oils. This soap- and fragrance-free formulation has won numerous awards from beauty industry insiders and the healthcare community. It is formulated to work for all skin types, even for babies and very sensitive skin. It’s the dermatologist-trusted cleanser for healthy and beautiful skin.\r\n\r\nBENEFITS\r\n• 99% women agree that Cetaphil Gentle Skin Cleanser gently cleans and moisturises¹\r\n• No. 1 dermatological skincare brand in Malaysia²\r\n* Soap- and fragrance-free\r\n• Ideal for both face and body\r\n• Works without causing skin irritation\r\n• pH-balanced and non-irritating formulation\r\n• Can be used with or without water', 'New', 'ceta1.jpg', 'ceta2.jpg', 'ceta3.jpg', '', '2021-10-24 20:35:34', 0),
+(16, '7', 'Iphone 13 Pro Max', '5299.99', 'Unit', 0, 'Apple', 'A dramatically more powerful camera system. A display so responsive, every interaction feels new again. The world’s fastest smartphone chip. Exceptional durability. And a huge leap in battery life. Our Pro camera system gets its biggest upgrade ever. With next-level hardware that captures so much more detail. Super-intelligent software for new photo and filmmaking techniques. And a mind-blowingly fast chip that makes it all possible. It’ll change the way you shoot.Macro photography comes to iPhone.With its redesigned lens and powerful autofocus system, the new Ultra Wide camera can focus at just 2 centimetres — making even the smallest details seem epic. Transform a leaf into abstract art. Capture a caterpillar’s fuzz. Magnify a dewdrop. The beauty of tiny awaits. Macro stills are just the beginning. You can also shoot macro videos — including slow motion and time-lapse. Prepare to be mesmerised. iPhone 13 Pro was made for low light. The Wide camera adds a wider aperture and our large', 'Popular', 'iphone-13-pro-max3.jpg', 'iphone-13-pro-max1.jpg', 'iphone-13-pro2.png', '', '2021-10-24 20:39:38', 0);
 
 -- --------------------------------------------------------
 
@@ -256,8 +264,8 @@ CREATE TABLE `users` (
 
 CREATE TABLE `wishlist` (
   `cart_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL
+  `item_id` int(11) NOT NULL,
+  `userEmail` varchar(120) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -333,6 +341,12 @@ ALTER TABLE `users`
   ADD KEY `gender` (`gender`);
 
 --
+-- Indexes for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD PRIMARY KEY (`cart_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -370,7 +384,7 @@ ALTER TABLE `membership`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `sale`
@@ -395,6 +409,12 @@ ALTER TABLE `type`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

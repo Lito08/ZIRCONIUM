@@ -20,7 +20,7 @@ else{
 	<meta name="theme-color" content="#3e454c">
 
 	<title>Zirconium Super Admin Dashboard</title>
-
+	<link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon">
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<!-- Sandstone Bootstrap CSS -->
