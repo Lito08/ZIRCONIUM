@@ -4,6 +4,29 @@ session_start();
     include("connection.php");
     include("functions.php");
 
+	if(isset($_POST["submit"]))
+	{
+		$name = $_POST["name"];
+		$email = $_POST["email"];
+		$phone = $_POST["phone"];
+		$about = $_POST["about"];
+		$description = $_POST["description"];
+
+		$pname = rand(1000,10000)."-".$_FILES["file"]["name"];
+		$tname = $_FILES["file"]["tmp_name"];
+		$uploads_dir = '/images';
+		move_uploaded_file($tname, $uploads_dir.'/'.$pname);
+
+		$sql="INSERT INTO contactusquery(Name,Email,ContactNumber,About,Message,Vimage1) VALUES('$name','$email','$phone','$about','$description','$pname')";
+		if(mysqli_query($con,$sql))
+		{
+			echo "Your message has succesfully posted to our expert team.";
+		}
+		else
+		{
+			echo "Something went wrong. Please try again";
+		}
+	}
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -51,36 +74,40 @@ session_start();
 	<div class="card">
       <div class="card-body">
       <h4 class="card-title mb-4">Contact Us</h4>
-      <form>
+      <form method="post">
         <div class="form-row">
 			<div class="col form-group">
 				<label>Name</label>
-			  	<input type="text" class="form-control" placeholder="Your Name Here">
+			  	<input name="name" type="text" class="form-control" placeholder="Your Name Here">
 			</div> <!-- form-group end.// -->
 			<div class="col form-group">
 				<label>Email</label>
-			  	<input type="email" class="form-control" placeholder="Your Email Here">
+			  	<input name="email" type="email" class="form-control" placeholder="Your Email Here">
+			</div> <!-- form-group end.// -->
+			<div class="col form-group">
+				<label>Contact No.</label>
+			  	<input name="phone" type="text" class="form-control" placeholder="Ex:+6013-317-4100">
 			</div> <!-- form-group end.// -->
 		</div> <!-- form-row.// -->
 		<div class="form-group">
 			<label>What is message about?</label>
-			<select class="form-control">
+			<select name="about" class="form-control">
 				<option>Select</option>
-				<option>Technical issue</option>
-				<option>Money refund</option>
-				<option>Recommendation</option>
+				<option value="Technical issue">Technical issue</option>
+				<option value="Moeny refund">Money refund</option>
+				<option value="Order status">Order status</option>
 			</select>
 		</div>
 		<div class="form-group">
-			<label>What is message about?</label>
-			<textarea class="form-control" rows="3"></textarea>
+			<label>Please elaborate more about the message.</label>
+			<textarea name="description" class="form-control" rows="3"></textarea>
 		</div>
 		<div class="form-group">
-			<label  for="exampleFormControlFile1">
-    			<input type="file" class="form-control-file">
+			<label>
+    			<input name="file" type="file" class="form-control-file">
     		</label>
 		</div>
-		<button class="btn btn-primary btn-block">Send</button>
+		<button name="submit" type="submit" class="btn btn-primary btn-block">Send</button>
       </form>
       </div> <!-- card-body.// -->
     </div> <!-- card .// -->
@@ -94,7 +121,6 @@ session_start();
 <div class="card">
       <div class="card-body">
       <h2 class="card-title mb-4">Need Assistance?</h2>
-      <form>
         <div class="form-row">
 			<div class="form-group">
 			<p>Do you have an inquiry about a Zirconium shipments? Our Customer Service Team is happy to help!</p>
@@ -106,7 +132,6 @@ session_start();
 			</p>
 			</div> <!-- form-group end.// -->
 		</div> <!-- form-row.// -->
-      </form>
       </div> <!-- card-body.// -->
     </div> <!-- card .// -->
 <!-- ============================ COMPONENT FEEDBACK END.// ================================= -->
@@ -122,13 +147,11 @@ session_start();
 	<div class="card">
       <div class="card-body">
       <h4 class="card-title mb-4">Get newsletters</h4>
-      	<form>
       		<div class="input-group">
       			<input type="text" class="form-control" placeholder="Email" name="">
       			<span class="input-group-append"><button class="btn btn-primary">Subscribe</button></span>
       		</div>
       		<h6 class="form-text text-muted">No spam, Only useful offers</h6>
-		</form>
       </div> <!-- card-body.// -->
     </div> <!-- card .// -->
 <!-- ============================ COMPONENT FEEDBACK END.// ================================= -->

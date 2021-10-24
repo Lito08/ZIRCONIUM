@@ -15,9 +15,9 @@
 					<h6 class="title">Help</h6>
 					<ul class="list-unstyled">
 						<li> <a href="contactus.php" target="_blank">Contact us</a></li>
-						<li> <a href="#">Money refund</a></li>
-						<li> <a href="#">Order status</a></li>
-						<li> <a href="#">Shipping info</a></li>
+						<li> <a href="contactus.php" target="_blank">Money refund</a></li>
+						<li> <a href="contactus.php" target="_blank">Order status</a></li>
+						<li> <a href="contactus.php" target="_blank">Shipping info</a></li>
 					</ul>
 				</aside>
 				<aside class="col-md col-6">
