@@ -115,14 +115,12 @@ $(document).ready(function() {
 			<div class="card-body">				
 				<figure class="icontext">
 						<div class="text" style="font-family:Noto Sans JP" >
-						<h1 style="text-transform: capitalize; font-size:25px" >Hello <strong><?php echo $row['full_name'];?></strong>!<br></h1>
-
+						<p style="text-transform: capitalize; font-size:36px" >Hello <strong><?php echo $row['full_name'];?></strong> !<br></p>
+						<br>
 						<p style="font-size:17px"><strong>Username:</strong> "<?php echo $row['user_name'];?>"</p>
 						<p style="font-size:17px"><strong>Gender:</strong> "<?php echo $row['gender'];?>"</p>
 						<br>
-
 						</div>
-
 				</figure>
 				<hr>
 				<p style="font-family:Noto Sans JP; text-transform: capitalize;font-size:17px">
@@ -133,17 +131,12 @@ $(document).ready(function() {
 					 <?php echo $row['city'];?> 
 					 <br> 
 					<br>
-					<a href="editprofile.php" class="btn-link"> Edit your profile here!</a>
+					<a href="editprofile.php" class="btn  btn-outline-primary"> Edit your profile here!</a>
 				</p>
-
-				
-
-			
 
 			</div> <!-- card-body .// -->
 		</article> <!-- card.// -->
 
-	
 	</main> <!-- col.// -->
 </div>
 
@@ -151,18 +144,13 @@ $(document).ready(function() {
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br>
 
 <!-- ========================= FOOTER ========================= -->
-<footer class="section-footer border-top padding-y">
-	<div class="container">
-		<p class="float-md-right"> 
-			&copy Copyright 2019 All rights reserved
-		</p>
-		<p>
-			<a href="#">Terms and conditions</a>
-		</p>
-	</div><!-- //container -->
-</footer>
+<?php include('includes/footer.php'); ?>
 <!-- ========================= FOOTER END // ========================= -->
 
 

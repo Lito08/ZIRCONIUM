@@ -6,12 +6,6 @@ session_start();
     include("functions.php");
 
 ?>
-    
-<?php
-
-
-?>
-
 
 <!DOCTYPE HTML>
 <html lang="en">
@@ -59,9 +53,9 @@ $(document).ready(function() {
 
 
 <!-- ========================= SECTION PAGETOP ========================= -->
-<section class="section-pagetop bg">
+<section class="section-pagetop bg-primary">
 <div class="container">
-	<h2 class="title-page">Zirconium - Edit Profile</h2>
+	<h2 class="title-page text-white" style="font-family:Roboto; text-transform: uppercase">Zirconium - Edit Profile</h2>
 </div> <!-- container //  -->
 </section>
 <!-- ========================= SECTION INTRO END// ========================= -->
@@ -73,9 +67,9 @@ $(document).ready(function() {
 <div class="row">
 	<aside class="col-md-3">
 		<ul class="list-group">
-			<a class="list-group-item active" href="#"> Account overview  </a>
-			<a class="list-group-item" href="#"> My Orders </a>
-			<a class="list-group-item" href="#"> My wishlist </a>
+			<a class="list-group-item active" href="profile.php"> Account overview  </a>
+			<a class="list-group-item" href="profileorder.php"> My Orders </a>
+			<a class="list-group-item" href="wishlist.php"> My wishlist </a>
 
 		</ul>
 	</aside> <!-- col.// -->
@@ -105,7 +99,7 @@ $(document).ready(function() {
 
 				>
 				</div> 
-				<?php
+					<?php
 					$user_id = $_SESSION['user_id'];
 					$sql = "SELECT * FROM users WHERE user_name = '$user_id'; ";
 					$result = mysqli_query($con, $sql);
@@ -115,9 +109,9 @@ $(document).ready(function() {
 						foreach($result as $row)
 						{
 							//print_r($row['user_name']);
-							?>
+					?>
 								
-							<?php
+					<?php
 						}
 					}
 					else
@@ -176,8 +170,8 @@ $(document).ready(function() {
 
 					<div class="form-group">
 					<button id="button" type="submit" name="update"  class="btn btn-primary btn-block"> Update  </button>
+					<small class="form-text text-muted">You will be logged out after updation!</small>
 					</div> <!-- form-group// --> 
-					
 
 				</form>
                 
@@ -200,7 +194,7 @@ $(document).ready(function() {
 			&copy Copyright 2019 All rights reserved
 		</p>
 		<p>
-			<a href="#">Terms and conditions</a>
+			<a href="tac.php" target="_blank">Terms and conditions</a>
 		</p>
 	</div><!-- //container -->
 </footer>

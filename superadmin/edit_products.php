@@ -9,7 +9,7 @@ header('location:index.php');
 else{ 
 
 if(isset($_POST['submit']))
-  {
+{
 $title=$_POST['title'];
 $type=$_POST['Type'];
 $per=$_POST['per'];

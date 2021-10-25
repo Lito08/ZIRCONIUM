@@ -11,7 +11,7 @@ session_start();
 
 	if(isset($_POST['submit']))
 	{
-		$sql = "SELECT item_id as IdItem FROM cart";
+		$sql = "SELECT Total,quantity,item_id as IdItem FROM cart";
 		$query = $dbh -> prepare($sql);
 		$query->execute();
 		$item=$query->fetchAll(PDO::FETCH_OBJ);
@@ -25,9 +25,11 @@ session_start();
 			$State=$_POST['state'];
 			$Country=$_POST['country'];
 			$Courier=$_POST['courier'];
+			$Quantity=$items->quantity;
 			$Item=$items->IdItem;
+			$total=$items->Total;
 
-			$sql="INSERT INTO sale(User, house, street, city, postalCode, state, country, courier, item) VALUES(:user,:House,:Street,:City,:Postalcode,:State,:Country,:Courier,:Item)";
+			$sql="INSERT INTO sale(User, house, street, city, postalCode, state, country, courier, quantity, item, Total) VALUES(:user,:House,:Street,:City,:Postalcode,:State,:Country,:Courier,:Quantity,:Item,:total)";
 			$query = $dbh->prepare($sql);
 			$query->bindParam(':user',$user,PDO::PARAM_STR);
 			$query->bindParam(':House',$House,PDO::PARAM_STR);
@@ -37,14 +39,16 @@ session_start();
 			$query->bindParam(':State',$State,PDO::PARAM_STR);
 			$query->bindParam(':Country',$Country,PDO::PARAM_STR);
 			$query->bindParam(':Courier',$Courier,PDO::PARAM_STR);
+			$query->bindParam(':Quantity',$Quantity,PDO::PARAM_STR);
 			$query->bindParam(':Item',$Item,PDO::PARAM_STR);
+			$query->bindParam(':total',$total,PDO::PARAM_STR);
 			$query->execute();
 
 			$lastInsertId = $dbh->lastInsertId();
 			if($lastInsertId)
 			{
 			$msg="You have purchased successfully";
-			echo("<script>window.location = 'index.php';</script>");
+			echo("<script>window.location = 'profileorder.php';</script>");
 			mysqli_query($con,"TRUNCATE TABLE cart");
 			}
 			else

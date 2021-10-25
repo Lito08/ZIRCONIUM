@@ -162,25 +162,6 @@ $regusers=$query->rowCount();
 											<a href="manage_courier.php" class="block-anchor panel-footer text-center">Full Detail <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
-									<div class="col-md-3">
-										<div class="panel panel-default">
-											<div class="panel-body bk-dark text-light">
-												<div class="stat-panel text-center">
-<?php
-$sql ="SELECT id from membership ";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$regusers=$query->rowCount();
-?>
-													<div class="stat-panel-number h1 "><?php echo htmlentities($regusers);?></div>
-													<div class="stat-panel-title text-uppercase">Total Memberships</div>
-												</div>
-											</div>
-											<a href="manage_membership.php" class="block-anchor panel-footer text-center">Full Detail <i class="fa fa-arrow-right"></i></a>
-										</div>
-									</div>
-									
 								</div>
 							</div>
 						</div>

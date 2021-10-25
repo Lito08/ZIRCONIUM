@@ -17,7 +17,6 @@
 						<li> <a href="contactus.php" target="_blank">Contact us</a></li>
 						<li> <a href="contactus.php" target="_blank">Money refund</a></li>
 						<li> <a href="contactus.php" target="_blank">Order status</a></li>
-						<li> <a href="contactus.php" target="_blank">Shipping info</a></li>
 					</ul>
 				</aside>
 				<aside class="col-md col-6">

@@ -5,6 +5,11 @@ session_start();
     include("connection.php");
     include("functions.php");
 
+	$sql ="SELECT cart_id from wishlist";
+	$query = $dbh -> prepare($sql);
+	$query->execute();
+	$results=$query->fetchAll(PDO::FETCH_OBJ);
+	$regusers=$query->rowCount();
 
 	$sessid = $_SESSION['user_id'];
 	$query = "SELECT * FROM wishlist WHERE userEmail = '$sessid';";
@@ -142,7 +147,12 @@ session_start();
 						</div>					
 						</div> <!-- col.// -->										
 			</article> <!-- card-group.// -->
-			<?php }} ?>		
+			<?php }} ?>
+			<article class="card-body border-bottom">
+			<div class="col-md-6">
+				<a name="spent" class="title">Total Items in Wishlist: <strong><?php echo htmlentities($regusers);?></strong></a>
+			</div>
+			</article>
 	</div>
 	</article>
 	</main>
@@ -156,8 +166,10 @@ session_start();
 	</aside> <!-- col.// -->
 </div> <!-- row.// -->
 
-<br>
-<br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
 
 
 </div> <!-- container .//  -->

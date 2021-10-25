@@ -63,7 +63,11 @@ if(isset($_GET["code"]))
 if(!isset($_SESSION['access_token']))
 {
  //Create a URL to obtain user authorization
-    $login_button = '<a href="'.$google_client->createAuthUrl().'"><img src="sign-in-with-google.png" /></a>';
+    $login_button = '
+	<div class="oauth-container btn darken-4 white black-text">
+	<a class="oauth-container btn darken-4 white black-text" href="'.$google_client->createAuthUrl().'">
+	<img width="20px" style="margin-top:7px; margin-right:8px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />Login with Google</a>
+	</div>';
 }
 
 if($_SERVER['REQUEST_METHOD'] == "POST")
@@ -292,6 +296,16 @@ $(document).ready(function() {
    }
    else
    {
-    echo '<div align="center">'.$login_button . '</div>';
+    echo '
+	<div class="col s12 m6 offset-m3 center-align" align="center">
+	<br><br><br><br>
+	<br><br><br><br>
+	<br><br><br><br>
+	<br><br><br><br>
+	<br><br><br><br>
+	<br><br><br><br>
+	Please click here to continue
+	<br>
+	'.$login_button . '</div>';
    }
 ?>

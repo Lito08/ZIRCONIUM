@@ -5,6 +5,9 @@ session_start();
     include("connection.php");
     include("functions.php");
 
+	$result = mysqli_query($con, 'SELECT SUM(Total) As val FROM sale');
+	$row = mysqli_fetch_assoc($result);
+	$sum = $row['val'];
 
 	$sessid = $_SESSION['user_id'];
 	$query = "SELECT * FROM sale WHERE User = '$sessid';";
@@ -82,9 +85,8 @@ session_start();
 				<h5 class="card-title mb-4">Recent orders </h5>					
 	
 	<?php
-	$total = 0;
 	$useremail=$_SESSION['user_id'];
-	$sql = "SELECT products.Vimage1 as Vimage1,products.price,products.title,products.id as pid,type.typename,sale.id,sale.country,sale.dop as rice from sale join products on sale.item=products.id join type on type.id=products.ptype where sale.User=:useremail";
+	$sql = "SELECT Total,quantity,products.Vimage1 as Vimage1,products.price,products.title,products.id as pid,type.typename,sale.id,sale.country,sale.dop as rice from sale join products on sale.item=products.id join type on type.id=products.ptype where sale.User=:useremail";
 	$query = $dbh -> prepare($sql);
 	$query-> bindParam(':useremail', $useremail, PDO::PARAM_STR);
 	$query->execute();
@@ -97,23 +99,28 @@ session_start();
 			<article class="card-body border-bottom">
 					
 						<div class="col-md-7">																							
-										<div class="col-md-6">
-										<figure class="itemside  mb-3">
-											<div class="aside">
-												<img src="superadmin/img/<?php echo htmlentities($result->Vimage1);?>" class="border img-sm">
-											</div>
-											<figcaption class="info">
-												<a  name="name" class="title"><?php echo htmlentities($result->title);?></a>
-												<strong name="price" class="">RM<?php echo htmlentities($result->price);?></strong>												
-											</figcaption>
-										</figure>
-									</form>
+						<div class="col-md-6">
+							<figure class="itemside  mb-3">
+									<div class="aside">
+										<img src="superadmin/img/<?php echo htmlentities($result->Vimage1);?>" class="border img-sm">
+									</div>
+									<figcaption class="info">
+										<a  name="name" class="title"><?php echo htmlentities($result->title);?></a>
+										<strong name="price" class="">RM<?php echo htmlentities($result->price);?></strong>	
+										<a name="quantity" class="title">Quantity: <?php echo htmlentities($result->quantity);?></a>
+										<a name="total" class="title">Total: <strong>RM<?php echo htmlentities($result->Total);?>.00</strong></a>									
+									</figcaption>
 								</figcaption>
-							</figure> 
+							</figure>
 						</div>					
 						</div> <!-- col.// -->										
 			</article> <!-- card-group.// -->
-			<?php }} ?>		
+			<?php }} ?>
+			<article class="card-body border-bottom">
+			<div class="col-md-6">
+				<a name="spent" class="title">Total Spent: <strong>RM<?php echo $sum;?></strong></a>
+			</div>
+			</article>
 	</div>
 	</article>
 	</main>
