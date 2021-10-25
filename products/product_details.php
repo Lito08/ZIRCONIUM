@@ -161,6 +161,9 @@ if(isset($_POST['wish']))
 
   <dt class="col-sm-3">Brand</dt>
   <dd class="col-sm-9"><?php echo htmlentities($result->brand);?></dd>
+
+  <dt class="col-sm-3">Stock</dt>
+  <dd class="col-sm-9"><?php echo htmlentities($result->stock);?></dd>
     <!-- ?php echo htmlentities($result->brand);?>// -->
   <dt class="col-sm-3">Delivery</dt>
   <dd class="col-sm-9">Worldwide </dd>

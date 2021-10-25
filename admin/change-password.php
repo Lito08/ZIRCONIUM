@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-include('includes/connection.php');
+include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
 	{	
 header('location:index.php');
@@ -9,26 +9,27 @@ header('location:index.php');
 else{
 // Code for change password	
 if(isset($_POST['submit']))
-	{
-$password=md5($_POST['password']);
+{
+$Password=md5($_POST['password']);
 $newpassword=md5($_POST['newpassword']);
 $username=$_SESSION['alogin'];
-$sql ="SELECT password FROM supplier WHERE user_name=:username and password=:password";
+$sql ="SELECT password FROM supplier WHERE user_name=:username and password=:Password";
 $query= $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
-$query-> bindParam(':password', $password, PDO::PARAM_STR);
+$query-> bindParam(':Password', $Password, PDO::PARAM_STR);
 $query-> execute();
 $results = $query -> fetchAll(PDO::FETCH_OBJ);
 if($query -> rowCount() > 0)
 {
-$con="update supplier set password=:newpassword where user_name=:username";
+$con="UPDATE supplier SET password=:newpassword WHERE user_name=:username";
 $chngpwd1 = $dbh->prepare($con);
 $chngpwd1-> bindParam(':username', $username, PDO::PARAM_STR);
 $chngpwd1-> bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
 $chngpwd1->execute();
 $msg="Your Password succesfully changed";
 }
-else {
+else 
+{
 $error="Your current password is not valid.";	
 }
 }

@@ -99,6 +99,7 @@ else{
 											<th>Quantity</th>
 											<th>Brand</th>
 											<th>Ribbon</th>
+											<th>Supplier</th>
 											<th>Date</th>
 											<th>Action</th>
 											</tr>
@@ -109,8 +110,8 @@ else{
 										</tfoot>
 										<tbody>
 	
-	<?php 
-	$sql = "SELECT * from products ";
+	<?php
+	$sql = "SELECT * FROM products";
 	$query = $dbh -> prepare($sql);
 	$query->execute();
 	$results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -126,9 +127,10 @@ else{
 												<td><?php echo htmlentities($result->title);?></td>
 												<td><?php echo htmlentities($result->price);?></td>
 												<td><?php echo htmlentities($result->perm);?></td>
-												<td><?php echo htmlentities($result->quantity);?></td>
+												<td><?php echo htmlentities($result->stock);?></td>
 												<td><?php echo htmlentities($result->brand);?></td>
 												<td><?php echo htmlentities($result->ribbon);?></td>
+												<td><?php echo htmlentities($result->User);?></td>
 												<td><?php echo htmlentities($result->date);?></td>
 	
 												<td><a href="edit_products.php?id=<?php echo $result->id;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;

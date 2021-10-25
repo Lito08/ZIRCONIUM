@@ -132,6 +132,8 @@ $(document).ready(function() {
 					 <br> 
 					<br>
 					<a href="editprofile.php" class="btn  btn-outline-primary"> Edit your profile here!</a>
+					<br><br>
+					<a href="change.php" class="btn  btn-primary"> Change password</a>
 				</p>
 
 			</div> <!-- card-body .// -->

@@ -15,27 +15,31 @@ $producttype=$_POST['Producttype'];
 $description=$_POST['description'];
 $price=$_POST['price'];
 $per=$_POST['per'];
+$Stock=$_POST['stock'];
 $Brand=$_POST['brand'];
 $Ribbon=$_POST['ribbon'];
 $vimage1=$_FILES["img1"]["name"];
 $vimage2=$_FILES["img2"]["name"];
 $vimage3=$_FILES["img3"]["name"];
+$user=$_SESSION['alogin'];
 move_uploaded_file($_FILES["img1"]["tmp_name"],"img/".$_FILES["img1"]["name"]);
 move_uploaded_file($_FILES["img2"]["tmp_name"],"img/".$_FILES["img2"]["name"]);
 move_uploaded_file($_FILES["img3"]["tmp_name"],"img/".$_FILES["img3"]["name"]);
 
-$sql="INSERT INTO products(title,ptype,description,price,perm,brand,ribbon,Vimage1,Vimage2,Vimage3) VALUES(:title,:producttype,:description,:price,:per,:Brand,:Ribbon,:vimage1,:vimage2,:vimage3)";
+$sql="INSERT INTO products(title,ptype,description,price,perm,stock,brand,ribbon,Vimage1,Vimage2,Vimage3,User) VALUES(:title,:producttype,:description,:price,:per,:Stock,:Brand,:Ribbon,:vimage1,:vimage2,:vimage3,:user)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':title',$title,PDO::PARAM_STR);
 $query->bindParam(':producttype',$producttype,PDO::PARAM_STR);
 $query->bindParam(':description',$description,PDO::PARAM_STR);
 $query->bindParam(':price',$price,PDO::PARAM_STR);
 $query->bindParam(':per',$per,PDO::PARAM_STR);
+$query->bindParam(':Stock',$Stock,PDO::PARAM_STR);
 $query->bindParam(':Brand',$Brand,PDO::PARAM_STR);
 $query->bindParam(':Ribbon',$Ribbon,PDO::PARAM_STR);
 $query->bindParam(':vimage1',$vimage1,PDO::PARAM_STR);
 $query->bindParam(':vimage2',$vimage2,PDO::PARAM_STR);
 $query->bindParam(':vimage3',$vimage3,PDO::PARAM_STR);
+$query->bindParam(':user',$user,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 	if($lastInsertId)
@@ -125,7 +129,7 @@ $lastInsertId = $dbh->lastInsertId();
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Product Title<span style="color:red">*</span></label>
 						<div class="col-sm-4">
-							<input type="text" name="title" class="form-control" required>
+							<input type="text" name="title" class="form-control" placeholder="Enter the title of your product" required>
 						</div>
 
 						<div class="hr-dashed"></div>
@@ -134,9 +138,18 @@ $lastInsertId = $dbh->lastInsertId();
 						
 						<label class="col-sm-2 control-label">Brand<span style="color:red">*</span></label>
 						<div class="col-sm-4">
-							<input type="text" name="brand" class="form-control" required>
+							<input type="text" name="brand" class="form-control" placeholder="Enter your brand here" required>
 						</div>
 						
+						<div class="hr-dashed"></div>
+						<div class="hr-dashed"></div>
+						<div class="hr-dashed"></div>
+
+						<label class="col-sm-2 control-label">Stock<span style="color:red">*</span></label>
+						<div class="col-sm-4">
+							<input type="text" name="stock" class="form-control" placeholder="Ex:50" required>
+						</div>
+
 						<div class="hr-dashed"></div>
 						<div class="hr-dashed"></div>
 						<div class="hr-dashed"></div>
@@ -144,7 +157,7 @@ $lastInsertId = $dbh->lastInsertId();
 						
 						<label class="col-sm-2 control-label">Ribbon<span style="color:red">*</span></label>
 						<div class="col-sm-4">
-							<input type="text" name="ribbon" class="form-control" required>
+							<input type="text" name="ribbon" class="form-control" placeholder="New or On Sale" required>
 						</div>
 
 						<div class="hr-dashed"></div>
@@ -200,7 +213,7 @@ $lastInsertId = $dbh->lastInsertId();
 						<div class="form-group">
 						<label class="col-sm-2 control-label">Description<span style="color:red">*</span></label>
 							<div class="col-sm-10">
-							<textarea class="form-control" name="description" rows="3" required></textarea>
+							<textarea class="form-control" name="description" rows="3" placeholder="Enter your description here" required></textarea>
 							</div>
 						</div>
 
@@ -209,7 +222,7 @@ $lastInsertId = $dbh->lastInsertId();
 						<div class="form-group">
 						<label class="col-sm-2 control-label">Price in (RM)<span style="color:red">*</span></label>
 							<div class="col-sm-4">
-							<input type="text" name="price" class="form-control" required>
+							<input type="text" name="price" class="form-control" placeholder="Ex:69.00" required>
 							</div>
 						</div>
 

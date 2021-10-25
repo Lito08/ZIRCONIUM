@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 					if($user_data['password'] === $password)
 					{
 
-						$_SESSION['alogin'] = $user_data['user_id'];
+						$_SESSION['alogin'] = $user_data['user_name'];
 						header("Location: dashboard.php");
 						die;
 					}
