@@ -63,6 +63,16 @@ $(document).ready(function() {
 </section>
 <!-- ========================= SECTION INTRO END// ========================= -->
 
+<section class="section-intro padding-y-sm">
+<div class="container">
+
+<div class="intro-banner-wrap">
+	<img src="images/banners/mah.png" class="img-fluid rounded" style="width:100%">
+</div>
+
+</div> <!-- container //  -->
+</section>
+
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
 <div class="container">
