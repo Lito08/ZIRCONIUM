@@ -139,8 +139,8 @@ foreach($results as $result)
 	<p>Get an amazing app  to make Your life easy</p>
 </div>
 <div class="col-md-6 text-md-right">
-	<a href="#"><img src="images/misc/appstore.png" height="40"></a>
-	<a href="#"><img src="images/misc/appstore.png" height="40"></a>
+	<a target="_blank" href="coming.php"><img src="images/misc/appstore.png" height="40"></a>
+	<a target="_blank" href="coming.php"><img src="images/misc/appstore.png" height="40"></a>
 </div>
 </div> <!-- row.// -->
 </div><!-- container // -->

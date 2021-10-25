@@ -66,9 +66,16 @@ $(document).ready(function() {
 <section class="section-intro padding-y-sm">
 <div class="container">
 
-<div class="intro-banner-wrap">
-	<img src="images/banners/mah.png" class="img-fluid rounded" style="width:100%">
-</div>
+<br>
+<section class="section-main bg padding-y">
+	<div class="container">
+		<div class="intro-banner-wrap">
+			<img src="images/banners/mah.png" class="img-fluid rounded" style="width:50%;height:50%;margin-left:300px;">
+		</div>
+	</div> <!-- container //  -->
+</section>
+<br>
+
 
 </div> <!-- container //  -->
 </section>
@@ -81,7 +88,7 @@ $(document).ready(function() {
 <h2 class="section-title">What is Zirconium?</h2>
 </header><!-- sect-heading -->
 
-<p><Strong>Welcome to Zirconium!</Strong> <br> <br>Zirconium is a platform that make basic needs buying among people within all range of age easier. Zirconium also is a commitment to producing the easiest, fastest and genuine quality basic needs on a e-commerce. That is why you should be using Zirconium.</p>
+<p>Zirconium is a platform that make basic needs buying among people within all range of age easier. Zirconium also is a commitment to producing the easiest, fastest and genuine quality basic needs on a e-commerce. That is why you should be using Zirconium.</p>
 
 </div> <!-- container .//  -->
 </section>
