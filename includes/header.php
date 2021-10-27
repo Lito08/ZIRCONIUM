@@ -1,4 +1,5 @@
 <?php
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     //delete cart
@@ -28,6 +29,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         {
           echo "<script>alert('Please try again later!');</script>";
         }
+
+      $cart_to_add = mysqli_real_escape_string($con, $_POST['item_id']);
+      $sql = "UPDATE cart SET Total = quantity * price WHERE item_id = $cart_to_add";
+    
+        if(mysqli_query($con, $sql))
+        {
+          echo("<script>window.location = 'shoppingcart.php';</script>");
+        }
+        else
+        {
+          echo "<script>alert('Please try again later!');</script>";
+        }
         
     }
 
@@ -35,6 +48,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if (isset($_POST['minus-cart'])){
       $cart_to_add = mysqli_real_escape_string($con, $_POST['item_id']);
       $sql = "UPDATE cart SET quantity = quantity - 1 WHERE item_id = $cart_to_add";
+    
+        if(mysqli_query($con, $sql))
+        {
+          echo("<script>window.location = 'shoppingcart.php';</script>");
+        }
+        else
+        {
+          echo "<script>alert('Please try again later!');</script>";
+        }
+
+      $cart_to_add = mysqli_real_escape_string($con, $_POST['item_id']);
+      $sql = "UPDATE cart SET Total = quantity * price WHERE item_id = $cart_to_add";
     
         if(mysqli_query($con, $sql))
         {
@@ -63,7 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     }
 }
-
 
 ?>
 <header class="section-header">
@@ -105,7 +129,9 @@ if($result=mysqli_query($con,$sql))
         if (isset($_SESSION["user_id"])) {
 				echo  "<a href='shoppingcart.php' class='icon icon-sm rounded-circle border'><i class='fa fa-shopping-cart'></i></a>
 				      <span class='badge badge-pill badge-danger notify'>$rowcount</span>";
-        }else{
+        }
+        else
+        {
           echo "<a href='login.php' class='icon icon-sm rounded-circle border'><i class='fa fa-shopping-cart'></i></a>
                 <span class='badge badge-pill badge-danger notify'>$rowcount</span>";
         }?>
@@ -113,10 +139,11 @@ if($result=mysqli_query($con,$sql))
 			<div class="widget-header icontext">
       <?php
         if (isset($_SESSION["user_id"])) {
-				echo "<a href='profile.php' class='icon icon-sm rounded-circle border'><i class='fa fa-user'> </i></a>";
-      }else{
-      }
-        ?>
+        echo "<a href='profile.php' class='icon icon-sm rounded-circle border'><i class='fa fa-user'></i></a>";
+        }else{
+        echo "<a href='login.php' class='icon icon-sm rounded-circle border'><i class='fa fa-user'></i></a>";
+        } 
+      ?>
 				<div class="text">
           <span class="text-muted">Welcome!</span>
 					<div> 

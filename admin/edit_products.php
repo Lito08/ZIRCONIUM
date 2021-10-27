@@ -118,6 +118,12 @@ foreach($results as $result)
 <div class="col-sm-4">
 <input type="text" name="title" class="form-control" value="<?php echo htmlentities($result->title)?>" required>
 </div>
+
+<div class="hr-dashed"></div>
+<div class="hr-dashed"></div>
+<div class="hr-dashed"></div>
+
+
 <label class="col-sm-2 control-label">Select Type<span style="color:red">*</span></label>
 <div class="col-sm-4">
 <select class="selectpicker" name="Type" required>
@@ -141,9 +147,34 @@ continue;
 
 </select>
 </div>
+
+<div class="hr-dashed"></div>
+<div class="hr-dashed"></div>
+<div class="hr-dashed"></div>
+
+<label class="col-sm-2 control-label">Select Per<span style="color:red">*</span></label>
+<div class="col-sm-4">
+<select class="selectpicker" name="per" required>
+<option value="">Select</option>
+<option value="Unit">Unit</option>
+<option value="Kg">Kg</option>
+<option value="g">g</option>
+<option value="ml">ml</option>
+<option value="Bottle">Bottle</option>
+<option value="Pcs">Pcs</option>
+<option value="Sheets">Sheets</option>
+<option value="Rolls">Rolls</option>
+<option value="Litre">Litre</option>
+<option value="Item">Item</option>
+<option value="Box">Box</option>
+
+</select>
+</div>
+
 </div>
 											
 <div class="hr-dashed"></div>
+
 <div class="form-group">
 <label class="col-sm-2 control-label">Description<span style="color:red">*</span></label>
 <div class="col-sm-10">
@@ -158,26 +189,38 @@ continue;
     </div>
 </div>
 
-<div class="hr-dashed"></div>								
 <div class="form-group">
-    <div class="col-sm-12">
-    <h4><b>Product Images</b></h4>
+    <label class="col-sm-2 control-label">Old Price in (RM)<span style="color:red">*</span></label>
+    <div class="col-sm-4">
+    <input type="text" name="oldprice" class="form-control" value="<?php echo htmlentities($result->oprice);?>" required>
+    </div>
+</div>
+
+<div class="hr-dashed"></div>
+<div class="hr-dashed"></div>
+
+<div style="margin-left:250px;" class="form-group">
+    <div class="col-sm-2">
+    <h3><b>Product Images</b></h3>
     </div>
 </div>
 
 
-<div class="form-group">
-    <div class="col-sm-4">
-        Image 1 <img src="../products/images/items/<?php echo htmlentities($result->Vimage1);?>" width="300" height="200" style="border:solid 1px #000">
-        <a href="changeimage1.php?imgid=<?php echo htmlentities($result->id)?>">Change Image 1</a>
+<div style="margin-left:250px;" class="form-group">
+    <div class="col-sm-3">
+        <img src="img/<?php echo htmlentities($result->Vimage1);?>" width="300" height="200" style="border:solid 1px #000">
+		<div class="hr-dashed"></div>
+		<input style="margin-left:100px;" type="file" name="img1">
     </div>
-    <div class="col-sm-4">
-        Image 2<img src="../products/images/items/<?php echo htmlentities($result->Vimage2);?>" width="300" height="200" style="border:solid 1px #000">
-        <a href="changeimage2.php?imgid=<?php echo htmlentities($result->id)?>">Change Image 2</a>
+    <div class="col-sm-3">
+        <img src="img/<?php echo htmlentities($result->Vimage2);?>" width="300" height="200" style="border:solid 1px #000">
+		<div class="hr-dashed"></div>
+        <input style="margin-left:100px;" type="file" name="img2">
     </div>
-    <div class="col-sm-4">
-        Image 3<img src="../products/images/items/<?php echo htmlentities($result->Vimage3);?>" width="300" height="200" style="border:solid 1px #000">
-        <a href="changeimage3.php?imgid=<?php echo htmlentities($result->id)?>">Change Image 3</a>
+    <div class="col-sm-3">
+        <img src="img/<?php echo htmlentities($result->Vimage3);?>" width="300" height="200" style="border:solid 1px #000">
+		<div class="hr-dashed"></div>
+        <input style="margin-left:100px;" type="file" name="img3">
     </div>
 </div>
 

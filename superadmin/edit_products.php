@@ -15,15 +15,26 @@ $type=$_POST['Type'];
 $per=$_POST['per'];
 $description=$_POST['description'];
 $price=$_POST['price'];
+$oldprice=$_POST['oldprice'];
 $id=intval($_GET['id']);
+$vimage1=$_FILES["img1"]["name"];
+$vimage2=$_FILES["img2"]["name"];
+$vimage3=$_FILES["img3"]["name"];
+move_uploaded_file($_FILES["img1"]["tmp_name"],"img/".$_FILES["img1"]["name"]);
+move_uploaded_file($_FILES["img2"]["tmp_name"],"img/".$_FILES["img2"]["name"]);
+move_uploaded_file($_FILES["img3"]["tmp_name"],"img/".$_FILES["img3"]["name"]);
 
-$sql="update products set title=:title,ptype=:Type,perm=:per,description=:description,price=:price where id=:id ";
+$sql="UPDATE products set title=:title,ptype=:Type,perm=:per,description=:description,price=:price,oprice:oldprice,Vimage1=:vimage1,Vimage2=:vimage2,Vimage3=:vimage3 WHERE id=:id ";
 $query = $dbh->prepare($sql);
 $query->bindParam(':title',$title,PDO::PARAM_STR);
 $query->bindParam(':Type',$type,PDO::PARAM_STR);
 $query->bindParam(':per',$per,PDO::PARAM_STR);
 $query->bindParam(':description',$description,PDO::PARAM_STR);
 $query->bindParam(':price',$price,PDO::PARAM_STR);
+$query->bindParam(':oldprice',$oldprice,PDO::PARAM_STR);
+$query->bindParam(':vimage1',$vimage1,PDO::PARAM_STR);
+$query->bindParam(':vimage2',$vimage2,PDO::PARAM_STR);
+$query->bindParam(':vimage3',$vimage3,PDO::PARAM_STR);
 $query->bindParam(':id',$id,PDO::PARAM_STR);
 $query->execute();
 
@@ -62,23 +73,23 @@ $msg="Data updated successfully";
 	<!-- Admin Stye -->
 	<link rel="stylesheet" href="css/style.css">
 	<style>
-		.errorWrap {
+	.errorWrap {
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
     border-left: 4px solid #dd3d36;
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-}
-.succWrap{
-    padding: 10px;
-    margin: 0 0 20px 0;
-    background: #fff;
-    border-left: 4px solid #5cb85c;
-    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-}
-</style>
+	}
+	.succWrap{
+		padding: 10px;
+		margin: 0 0 20px 0;
+		background: #fff;
+		border-left: 4px solid #5cb85c;
+		-webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+		box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+	}
+	</style>
 </head>
 
 <body>
@@ -119,6 +130,11 @@ foreach($results as $result)
 <input type="text" name="title" class="form-control" value="<?php echo htmlentities($result->title)?>" required>
 </div>
 
+<div class="hr-dashed"></div>
+<div class="hr-dashed"></div>
+<div class="hr-dashed"></div>
+
+
 <label class="col-sm-2 control-label">Select Type<span style="color:red">*</span></label>
 <div class="col-sm-4">
 <select class="selectpicker" name="Type" required>
@@ -147,7 +163,7 @@ continue;
 <div class="hr-dashed"></div>
 <div class="hr-dashed"></div>
 
-<label class="col-sm-8 control-label">Select Per<span style="color:red">*</span></label>
+<label class="col-sm-2 control-label">Select Per<span style="color:red">*</span></label>
 <div class="col-sm-4">
 <select class="selectpicker" name="per" required>
 <option value="">Select</option>
@@ -169,6 +185,7 @@ continue;
 </div>
 											
 <div class="hr-dashed"></div>
+
 <div class="form-group">
 <label class="col-sm-2 control-label">Description<span style="color:red">*</span></label>
 <div class="col-sm-10">
@@ -183,26 +200,38 @@ continue;
     </div>
 </div>
 
-<div class="hr-dashed"></div>								
 <div class="form-group">
-    <div class="col-sm-12">
-    <h4><b>Product Images</b></h4>
+    <label class="col-sm-2 control-label">Old Price in (RM)<span style="color:red">*</span></label>
+    <div class="col-sm-4">
+    <input type="text" name="price" class="form-control" value="<?php echo htmlentities($result->oprice);?>" required>
+    </div>
+</div>
+
+<div class="hr-dashed"></div>
+<div class="hr-dashed"></div>
+
+<div style="margin-left:250px;" class="form-group">
+    <div class="col-sm-2">
+    <h3><b>Product Images</b></h3>
     </div>
 </div>
 
 
-<div class="form-group">
-    <div class="col-sm-4">
-        Image 1 <img src="../products/images/items/<?php echo htmlentities($result->Vimage1);?>" width="300" height="200" style="border:solid 1px #000">
-        <a href="changeimage1.php?imgid=<?php echo htmlentities($result->id)?>">Change Image 1</a>
+<div style="margin-left:250px;" class="form-group">
+    <div class="col-sm-3">
+        <img src="img/<?php echo htmlentities($result->Vimage1);?>" width="300" height="200" style="border:solid 1px #000">
+		<div class="hr-dashed"></div>
+		<input style="margin-left:100px;" type="file" name="img1">
     </div>
-    <div class="col-sm-4">
-        Image 2<img src="../products/images/items/<?php echo htmlentities($result->Vimage2);?>" width="300" height="200" style="border:solid 1px #000">
-        <a href="changeimage2.php?imgid=<?php echo htmlentities($result->id)?>">Change Image 2</a>
+    <div class="col-sm-3">
+        <img src="img/<?php echo htmlentities($result->Vimage2);?>" width="300" height="200" style="border:solid 1px #000">
+		<div class="hr-dashed"></div>
+        <input style="margin-left:100px;" type="file" name="img2">
     </div>
-    <div class="col-sm-4">
-        Image 3<img src="../products/images/items/<?php echo htmlentities($result->Vimage3);?>" width="300" height="200" style="border:solid 1px #000">
-        <a href="changeimage3.php?imgid=<?php echo htmlentities($result->id)?>">Change Image 3</a>
+    <div class="col-sm-3">
+        <img src="img/<?php echo htmlentities($result->Vimage3);?>" width="300" height="200" style="border:solid 1px #000">
+		<div class="hr-dashed"></div>
+        <input style="margin-left:100px;" type="file" name="img3">
     </div>
 </div>
 

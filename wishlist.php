@@ -5,13 +5,15 @@ session_start();
     include("connection.php");
     include("functions.php");
 
-	$sql ="SELECT cart_id from wishlist";
+	$sessid = $_SESSION['user_id'];
+
+	$sql ="SELECT cart_id from wishlist WHERE userEmail = '$sessid';";
 	$query = $dbh -> prepare($sql);
 	$query->execute();
 	$results=$query->fetchAll(PDO::FETCH_OBJ);
 	$regusers=$query->rowCount();
 
-	$sessid = $_SESSION['user_id'];
+	
 	$query = "SELECT * FROM wishlist WHERE userEmail = '$sessid';";
 	$results = mysqli_query($con, $query) or die (mysqli_query());
 
@@ -129,12 +131,14 @@ session_start();
 						<div class="col-md-6">
 									<form method="post">
 										<figure class="itemside  mb-3">
-											<div class="form-group">
+											<div class="aside">
 												<img src="superadmin/img/<?php echo htmlentities($result->Vimage1);?>" class="border img-sm">
 											</div>
 											<figcaption class="info">
-												<a href="product_details.php?vhid=<?php echo htmlentities($result->pid);?>" name="name" class="title"><?php echo htmlentities($result->title);?></a>
-												<strong name="price" class="">RM<?php echo htmlentities($result->price);?></strong>			
+												<div class="aside">
+													<a href="products/product_details.php?vhid=<?php echo htmlentities($result->pid);?>" name="name" class="title"><?php echo htmlentities($result->title);?></a>
+													<strong name="price" class="">RM<?php echo htmlentities($result->price);?></strong>
+												</div>	
 											</figcaption>
 											<figcaption class="info">
 											<input type="hidden" name="item_id" value="<?php echo htmlentities($result->pid) ?>">

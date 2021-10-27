@@ -135,7 +135,7 @@ foreach($results as $result)
                                             <td><?php echo htmlentities($result->quantity);?></td>
                                             <td><?php echo htmlentities($result->dop);?></td>
 
-											<td><a href="manage_products.php?del=<?php echo $result->id;?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a></td>
+											<td><a href="manage_sale.php?del=<?php echo $result->id;?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a></td>
 										</tr>
 										<?php $cnt=$cnt+1; }} ?>
 									</tbody>

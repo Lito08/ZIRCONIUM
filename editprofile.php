@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-	include("products/includes/config.php");
+	include("config.php");
     include("connection.php");
     include("functions.php");
 
@@ -55,7 +55,7 @@ $(document).ready(function() {
 <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg-primary">
 <div class="container">
-	<h2 class="title-page text-white" style="font-family:Roboto; text-transform: uppercase">Zirconium - Edit Profile</h2>
+	<h2 class="title-page text-white" style="font-family:Roboto; text-transform: uppercase">Edit Profile</h2>
 </div> <!-- container //  -->
 </section>
 <!-- ========================= SECTION INTRO END// ========================= -->
@@ -124,49 +124,55 @@ $(document).ready(function() {
 						<div class="form-group">
 							<label>Full Name</label>
 							<input type="text" class="form-control" value="<?php echo $row['full_name'];?>" placeholder="Full Name" name="full_name" >
-						</div> <!-- form-group end.// -->	
-							<div class="form-group">
+						</div> <!-- form-group end.// -->
+
+						<div class="form-group">
 							<label>Username</label>
 							<input id="text" type="text"  class="form-control" value="<?php echo $row['user_name'];?> "placeholder="Username" name="user_name" >
 							<small class="form-text text-muted">Please enter your username.</small>
-							</div> <!-- form-group end.// -->
-						<div class="form-group">
-						<label>Email</label>
-						<input id="text" type="email" class="form-control" value="<?php echo $row['email'];?>" placeholder="Email Address" name="email">
-						<small class="form-text text-muted">We'll never share your email with anyone else.</small>
-						</div> <!-- form-group end.// -->
-						<div class="form-group">
-						<label class="custom-control custom-radio custom-control-inline">
-						<input class="custom-control-input" checked="" type="radio" name="gender" value="male">
-						<span class="custom-control-label"> Male </span>
-						</label>
-						<label class="custom-control custom-radio custom-control-inline">
-						<input class="custom-control-input" type="radio" name="gender" value="female">
-						<span class="custom-control-label"> Female </span>
-						</label>
-						</div> <!-- form-group end.// -->
-						<div class="form-row">
-						<div class="form-group col-md-6">
-						<label>City</label>
-						<input type="text" class="form-control" value="<?php echo $row['city'];?>" name="city" >
-						</div> <!-- form-group end.// -->
-						<div class="form-group col-md-6">
-						<label>Country</label>
-						<select id="inputState" class="form-control" value="<?php echo $row['country'];?>" name="country" >
-							<option> Choose...</option>
-							<option>Indoneisa</option>
-							<option>Russia</option>
-							<option>France</option>
-							<option>Germany</option>
-							<option>Italy</option>
-							<option>Singapore</option>
-							<option selected="">Malaysia</option>
-							<option>Thailand</option>
-							<option>United States</option>
-						</select>
 						</div> <!-- form-group end.// -->
 
-					</div> <!-- form-row.// -->
+						<div class="form-group">
+							<label>Email</label>
+							<input id="text" type="email" class="form-control" value="<?php echo $row['email'];?>" placeholder="Email Address" name="email">
+							<small class="form-text text-muted">We'll never share your email with anyone else.</small>
+						</div> <!-- form-group end.// -->
+
+						<div class="form-group">
+							<label class="custom-control custom-radio custom-control-inline">
+							<input class="custom-control-input" checked="" type="radio" name="gender" value="male">
+							<span class="custom-control-label"> Male </span>
+							</label>
+							<label class="custom-control custom-radio custom-control-inline">
+							<input class="custom-control-input" type="radio" name="gender" value="female">
+							<span class="custom-control-label"> Female </span>
+							</label>
+						</div> <!-- form-group end.// -->
+
+						<div class="form-row">
+
+							<div class="form-group col-md-6">
+								<label>City</label>
+								<input type="text" class="form-control" value="<?php echo $row['city'];?>" name="city" >
+							</div> <!-- form-group end.// -->
+
+							<div class="form-group col-md-6">
+								<label>Country</label>
+								<select id="inputState" class="form-control" value="<?php echo $row['country'];?>" name="country" >
+									<option> Choose...</option>
+									<option>Indoneisa</option>
+									<option>Russia</option>
+									<option>France</option>
+									<option>Germany</option>
+									<option>Italy</option>
+									<option>Singapore</option>
+									<option selected="">Malaysia</option>
+									<option>Thailand</option>
+									<option>United States</option>
+								</select>
+							</div> <!-- form-group end.// -->
+
+						</div> <!-- form-row.// -->
 
 					<div class="form-group">
 					<button id="button" type="submit" name="update"  class="btn btn-primary btn-block"> Update  </button>
@@ -188,16 +194,7 @@ $(document).ready(function() {
 
 
 <!-- ========================= FOOTER ========================= -->
-<footer class="section-footer border-top padding-y">
-	<div class="container">
-		<p class="float-md-right"> 
-			&copy Copyright 2019 All rights reserved
-		</p>
-		<p>
-			<a href="tac.php" target="_blank">Terms and conditions</a>
-		</p>
-	</div><!-- //container -->
-</footer>
+<?php include('includes/footer.php') ?>
 <!-- ========================= FOOTER END // ========================= -->
 
 

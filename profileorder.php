@@ -5,11 +5,11 @@ session_start();
     include("connection.php");
     include("functions.php");
 
-	$result = mysqli_query($con, 'SELECT SUM(Total) As val FROM sale');
+	$sessid = $_SESSION['user_id'];
+	$result = mysqli_query($con, "SELECT SUM(Total) As val FROM sale WHERE User = '$sessid';");
 	$row = mysqli_fetch_assoc($result);
 	$sum = $row['val'];
 
-	$sessid = $_SESSION['user_id'];
 	$query = "SELECT * FROM sale WHERE User = '$sessid';";
 	$results = mysqli_query($con, $query) or die (mysqli_query());
 
@@ -102,14 +102,16 @@ session_start();
 						<div class="col-md-6">
 							<figure class="itemside  mb-3">
 									<div class="aside">
-										<img src="superadmin/img/<?php echo htmlentities($result->Vimage1);?>" class="border img-sm">
+										<img  src="superadmin/img/<?php echo htmlentities($result->Vimage1);?>" class="border img-sm">
 									</div>
+									<div style="margin-left:20px;" class="aside">
 									<figcaption class="info">
-										<a  name="name" class="title"><?php echo htmlentities($result->title);?></a>
+										<a href="products/product_details.php?vhid=<?php echo htmlentities($result->pid);?>" name="name" class="title"><?php echo htmlentities($result->title);?></a>
 										<strong name="price" class="">RM<?php echo htmlentities($result->price);?></strong>	
 										<a name="quantity" class="title">Quantity: <?php echo htmlentities($result->quantity);?></a>
-										<a name="total" class="title">Total: <strong>RM<?php echo htmlentities($result->Total);?>.00</strong></a>									
+										<a name="total" class="title">Total: <strong>RM<?php echo htmlentities($result->Total);?></strong></a>									
 									</figcaption>
+									</div>
 								</figcaption>
 							</figure>
 						</div>					

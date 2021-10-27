@@ -205,6 +205,10 @@ $lastInsertId = $dbh->lastInsertId();
 						<option value="Litre">Litre</option>
 						<option value="Item">Item</option>
 						<option value="Box">Box</option>
+						<option value="Carton">Carton</option>
+						<option value="Car">Car</option>
+						<option value="Motorcycle">Motorcycle</option>
+						<option value="Slice">Slice</option>
 
 						</select>
 						</div>
