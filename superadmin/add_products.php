@@ -14,6 +14,7 @@ $title=$_POST['title'];
 $producttype=$_POST['Producttype'];
 $description=$_POST['description'];
 $price=$_POST['price'];
+$oldprice=$_POST['oldprice'];
 $per=$_POST['per'];
 $Stock=$_POST['stock'];
 $Brand=$_POST['brand'];
@@ -26,12 +27,13 @@ move_uploaded_file($_FILES["img1"]["tmp_name"],"img/".$_FILES["img1"]["name"]);
 move_uploaded_file($_FILES["img2"]["tmp_name"],"img/".$_FILES["img2"]["name"]);
 move_uploaded_file($_FILES["img3"]["tmp_name"],"img/".$_FILES["img3"]["name"]);
 
-$sql="INSERT INTO products(title,ptype,description,price,perm,stock,brand,ribbon,Vimage1,Vimage2,Vimage3,User) VALUES(:title,:producttype,:description,:price,:per,:Stock,:Brand,:Ribbon,:vimage1,:vimage2,:vimage3,:user)";
+$sql="INSERT INTO products(title,ptype,description,price,oprice,perm,stock,brand,ribbon,Vimage1,Vimage2,Vimage3,User) VALUES(:title,:producttype,:description,:price,:oldprice,:per,:Stock,:Brand,:Ribbon,:vimage1,:vimage2,:vimage3,:user)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':title',$title,PDO::PARAM_STR);
 $query->bindParam(':producttype',$producttype,PDO::PARAM_STR);
 $query->bindParam(':description',$description,PDO::PARAM_STR);
 $query->bindParam(':price',$price,PDO::PARAM_STR);
+$query->bindParam(':oldprice',$oldprice,PDO::PARAM_STR);
 $query->bindParam(':per',$per,PDO::PARAM_STR);
 $query->bindParam(':Stock',$Stock,PDO::PARAM_STR);
 $query->bindParam(':Brand',$Brand,PDO::PARAM_STR);
@@ -227,10 +229,17 @@ $lastInsertId = $dbh->lastInsertId();
 						</div>
 
 						<div class="hr-dashed"></div>
-						<div class="hr-dashed"></div>
-						<div class="hr-dashed"></div>
-						
-						
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Old Price in (RM)<span style="color:red">*</span></label>
+								<div class="col-sm-4">
+								<input type="text" name="oldprice" class="form-control" placeholder="Ex:169.00" required>
+								</div>
+							</div>
+	
+							<div class="hr-dashed"></div>
+							<div class="hr-dashed"></div>
+							<div class="hr-dashed"></div>
 
 						<div class="form-group">
 							<div class="col-sm-12">

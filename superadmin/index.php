@@ -67,7 +67,9 @@ echo "<script type='text/javascript'> document.location = 'dashboard.php'; </scr
 
 									<button class="btn btn-primary btn-block" name="login" type="submit">LOGIN</button>
 									<br>
-                  <a href="../index.php">Back to Main Page</a>
+									<a href="../admin/index.php">Supplier Login</a>
+									<br><br>
+                  					<a href="../index.php">Back to Main Page</a>
 
 								</form>
 							</div>

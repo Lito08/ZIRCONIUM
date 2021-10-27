@@ -1,18 +1,50 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-  //delete cart
-      if (isset($_POST['delete-cart-submit'])){
+
+    //delete cart
+    if (isset($_POST['delete-cart-submit'])){
     $cart_to_delete = mysqli_real_escape_string($con, $_POST['item_id']);
     $sql = "DELETE FROM cart WHERE item_id = $cart_to_delete";
 
     if(mysqli_query($con, $sql))
     {
-      echo "<script>alert('Product has been deleted.');</script>";
       echo("<script>window.location = 'shoppingcart.php';</script>");
     }else{
       echo "<script>alert('Failed to delete item.');</script>";
     }
+    
+    }
 
+    //increase quantity cart
+    if (isset($_POST['adding-cart'])){
+      $cart_to_add = mysqli_real_escape_string($con, $_POST['item_id']);
+      $sql = "UPDATE cart SET quantity = quantity + 1 WHERE item_id = $cart_to_add";
+    
+        if(mysqli_query($con, $sql))
+        {
+          echo("<script>window.location = 'shoppingcart.php';</script>");
+        }
+        else
+        {
+          echo "<script>alert('Please try again later!');</script>";
+        }
+        
+    }
+
+    //decrease quantity cart
+    if (isset($_POST['minus-cart'])){
+      $cart_to_add = mysqli_real_escape_string($con, $_POST['item_id']);
+      $sql = "UPDATE cart SET quantity = quantity - 1 WHERE item_id = $cart_to_add";
+    
+        if(mysqli_query($con, $sql))
+        {
+          echo("<script>window.location = 'shoppingcart.php';</script>");
+        }
+        else
+        {
+          echo "<script>alert('Please try again later!');</script>";
+        }
+        
     }
 }
 
@@ -24,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     if(mysqli_query($con, $sql))
     {
-      echo "<script>alert('Product has been removed.');</script>";
       echo("<script>window.location = 'wishlist.php';</script>");
     }else{
       echo "<script>alert('Failed to delete item.');</script>";
@@ -32,6 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     }
 }
+
+
 ?>
 <header class="section-header">
 

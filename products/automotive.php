@@ -194,7 +194,7 @@ $regusers=$query->rowCount();
 </header><!-- sect-heading -->
 
 
-<?php $sql = "SELECT products.title,type.typename,type.id,products.price,products.id,products.description,products.Vimage1 from products join type on type.id=products.ptype WHERE type.id='12'";
+<?php $sql = "SELECT products.oprice,products.title,type.typename,type.id,products.price,products.id,products.description,products.Vimage1 from products join type on type.id=products.ptype WHERE type.id='12'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -239,7 +239,7 @@ foreach($results as $result)
 			<div class="info-aside">
 				<div class="price-wrap">
 					<span class="price h5"> RM<?php echo htmlentities($result->price);?></span>	
-					<del class="price-old"> RM<?php echo htmlentities($result->price);?></del>
+					<del class="price-old"> RM<?php echo htmlentities($result->oprice);?></del>
 				</div> <!-- info-price-detail // -->
 				<p class="text-success">Free shipping</p>
 				<br>

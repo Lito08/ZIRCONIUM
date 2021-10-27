@@ -22,14 +22,16 @@
 				<aside class="col-md col-6">
 					<h6 class="title">Account</h6>
 					<ul class="list-unstyled">
-						<li> <a href="login.php"> Login </a></li>
-						<li> <a href="signup.php"> Register </a></li>
 						<?php
 						if (isset($_SESSION["user_id"])) {
-								echo"
-						<li> <a href='profile.php'> View Profile </a></li>
-						<li> <a href='shoppingcart.php'> My Orders </a></li>";
-						}else{}?>
+							echo
+							"<li> <a href='profile.php'> View Profile </a></li>
+							<li> <a href='shoppingcart.php'> My Orders </a></li>";
+						}else{
+							echo
+							"<li> <a href='login.php'> Login </a></li>
+							<li> <a href='signup.php'> Register </a></li>";
+						}?>
 						<li> <a href="admin/index.php"> Supplier Login </a></li>
 					</ul>
 				</aside>

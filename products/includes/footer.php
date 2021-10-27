@@ -22,24 +22,26 @@
 				<aside class="col-md col-6">
 					<h6 class="title">Account</h6>
 					<ul class="list-unstyled">
-						<li> <a href="login.php"> Login </a></li>
-						<li> <a href="signup.php"> Register </a></li>
 						<?php
 						if (isset($_SESSION["user_id"])) {
-								echo"
-						<li> <a href='../profile.php'> View Profile </a></li>
-						<li> <a href='../shoppingcart.php'> My Orders </a></li>";
-						}else{}?>
+							echo
+							"<li> <a href='profile.php'> View Profile </a></li>
+							<li> <a href='shoppingcart.php'> My Orders </a></li>";
+						}else{
+							echo
+							"<li> <a href='../login.php'> Login </a></li>
+							<li> <a href='../signup.php'> Register </a></li>";
+						}?>
 						<li> <a href="../admin/index.php"> Supplier Login </a></li>
 					</ul>
 				</aside>
 				<aside class="col-md">
 					<h6 class="title">Social</h6>
 					<ul class="list-unstyled">
-						<li><a href="#"> <i class="fab fa-facebook"></i> Facebook </a></li>
-						<li><a href="#"> <i class="fab fa-twitter"></i> Twitter </a></li>
-						<li><a href="#"> <i class="fab fa-instagram"></i> Instagram </a></li>
-						<li><a href="#"> <i class="fab fa-youtube"></i> Youtube </a></li>
+					<li><a href="https://www.facebook.com/profile.php?id=100059688526742" target="_blank"> <i class="fab fa-facebook"></i> Facebook </a></li>
+						<li><a href="https://twitter.com/ZirconiumOffic1" target="_blank"> <i class="fab fa-twitter"></i> Twitter </a></li>
+						<li><a href="https://www.instagram.com/zirconium.official/" target="_blank"> <i class="fab fa-instagram"></i> Instagram </a></li>
+						<li><a href="https://www.youtube.com/channel/UCFYNBZi4TjWDGLJ3jfaKt2g" target="_blank"> <i class="fab fa-youtube"></i> Youtube </a></li>
 					</ul>
 				</aside>
 			</div> <!-- row.// -->

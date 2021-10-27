@@ -192,7 +192,7 @@ $regusers=$query->rowCount();
 </header><!-- sect-heading -->
 
 <?php
-$sql = "SELECT products.ribbon,products.title,type.typename,type.id,products.price,products.id,products.description,products.Vimage1 from products join type on type.id=products.ptype WHERE type.id='2'";
+$sql = "SELECT products.oprice,products.ribbon,products.title,type.typename,type.id,products.price,products.id,products.description,products.Vimage1 from products join type on type.id=products.ptype WHERE type.id='2'";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -202,10 +202,8 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {
 	$pid = $result -> id;
-
-	
-
 ?>
+
 <form method="post">
 <article class="card card-product-list">
 	<div class="row no-gutters">
@@ -241,7 +239,7 @@ foreach($results as $result)
 			<div class="info-aside">
 				<div class="price-wrap">
 					<span class="price h5"> RM<?php echo htmlentities($result->price);?></span>	
-					<del class="price-old"> RM<?php echo htmlentities($result->price);?></del>
+					<del class="price-old"> RM<?php echo htmlentities($result->oprice);?></del>
 				</div> <!-- info-price-detail // -->
 				<p class="text-success">Free shipping</p>
 				<br>

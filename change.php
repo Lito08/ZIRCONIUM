@@ -90,11 +90,19 @@ return true;
 </head>
 <body>
 
-
+<!-- section-header.// -->
 <?php include('includes/header.php'); ?>
 <!-- section-header.// -->
 
+<!-- ========================= SECTION PAGETOP ========================= -->
+<section class="section-pagetop bg-primary">
+<div class="container" >
+	<h2 class="title-page text-white" style="font-family:Roboto; text-transform: uppercase">Change password</h2>
+</div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION INTRO END// ========================= -->
 
+<br><br><br><br>
 
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
@@ -126,7 +134,6 @@ return true;
 			</form>
 		</article><!-- card-body.// -->
     </div> <!-- card .// -->
-    <p class="text-center mt-4">Have an account? <a href="login.php">Log In</a></p>
     <br><br>
 <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
 
@@ -136,19 +143,9 @@ return true;
 
 <br><br><br><br>
 <br><br><br><br>
-<br>
 
 <!-- ========================= FOOTER ========================= -->
-<footer class="section-footer border-top padding-y">
-	<div class="container">
-		<p class="float-md-right"> 
-			&copy Copyright 2019 All rights reserved
-		</p>
-		<p>
-			<a target="_blank" href="tac.php">Terms and conditions</a>
-		</p>
-	</div><!-- //container -->
-</footer>
+<?php include('includes/footer.php'); ?>
 <!-- ========================= FOOTER END // ========================= -->
 
 

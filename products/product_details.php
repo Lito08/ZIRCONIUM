@@ -33,8 +33,110 @@ error_reporting(0);
 <link href="../css/ui.css" rel="stylesheet" type="text/css"/>
 <link href="../css/responsive.css" rel="stylesheet" />
 
+<!-- plugin: slickslider -->
+<link href="plugins/slickslider/slick.css" rel="stylesheet" type="text/css" />
+<link href="plugins/slickslider/slick-theme.css" rel="stylesheet" type="text/css" />
+<script src="plugins/slickslider/slick.min.js"></script>
+
 <!-- custom javascript -->
 <script src="../js/script.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+/// some script
+
+// jquery ready start
+$(document).ready(function() {
+	// jQuery code
+
+	/////////////////  items slider. /plugins/slickslider/
+    if ($('.slider-banner-slick').length > 0) { // check if element exists
+        $('.slider-banner-slick').slick({
+              infinite: true,
+              autoplay: true,
+              slidesToShow: 1,
+              dots: false,
+              prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
+           	  nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
+        });
+    } // end if
+
+     /////////////////  items slider. /plugins/slickslider/
+    if ($('.slider-custom-slick').length > 0) { // check if element exists
+        $('.slider-custom-slick').slick({
+              infinite: true,
+              slidesToShow: 2,
+              dots: true,
+              prevArrow: $('.slick-prev-custom'),
+              nextArrow: $('.slick-next-custom')
+        });
+    } // end if
+
+  
+
+    /////////////////  items slider. /plugins/slickslider/
+    if ($('.slider-items-slick').length > 0) { // check if element exists
+        $('.slider-items-slick').slick({
+            infinite: true,
+            swipeToSlide: true,
+            slidesToShow: 4,
+            dots: true,
+            slidesToScroll: 2,
+            prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
+           	nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                },
+                {
+                    breakpoint: 640,
+                    settings: {
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    } // end if
+
+	
+
+}); 
+
+// jquery end
+</script>
+
+<script>
+
+	$(document).ready(function () {
+
+	$('.increment-btn').click(function (e) {
+		e.preventDefault();
+		var incre_value = $(this).parents('.quantity').find('.qty-input').val();
+		var value = parseInt(incre_value, 10);
+		value = isNaN(value) ? 0 : value;
+		if(value<100){
+			value++;
+			$(this).parents('.quantity').find('.qty-input').val(value);
+		}
+
+	});
+
+	$('.decrement-btn').click(function (e) {
+		e.preventDefault();
+		var decre_value = $(this).parents('.quantity').find('.qty-input').val();
+		var value = parseInt(decre_value, 10);
+		value = isNaN(value) ? 0 : value;
+		if(value>1){
+			value--;
+			$(this).parents('.quantity').find('.qty-input').val(value);
+		}
+	});
+
+	});
+	
+</script>
 
 <!-- section-header.// -->
 <?php
@@ -111,6 +213,13 @@ if(isset($_POST['wish']))
 
 }
 
+//$a = 1;
+
+//if (isset($_POST['plus']))
+//{
+//	$a = $a + 1;
+//}
+
 ?>
 
 <section class="section-content padding-y bg">
@@ -120,17 +229,22 @@ if(isset($_POST['wish']))
 <div class="card">
 	<div class="row no-gutters">
 		<aside class="col-md-6">
-<article class="gallery-wrap"> 
-	<div class="img-big-wrap">
-	   <a target="_blank" href="../superadmin/img/<?php echo htmlentities($result->Vimage1);?>"><img src="../superadmin/img/<?php echo htmlentities($result->Vimage1);?>"></a>
-	</div> <!-- img-big-wrap.// -->
-	<div class="thumbs-wrap">
-	  <a target="_blank" href="../superadmin/img/<?php echo htmlentities($result->Vimage2);?>" class="item-thumb"> <img src="../superadmin/img/<?php echo htmlentities($result->Vimage2);?>"></a>
-	  <a target="_blank" href="../superadmin/img/<?php echo htmlentities($result->Vimage3);?>" class="item-thumb"> <img src="../superadmin/img/<?php echo htmlentities($result->Vimage3);?>"></a>
-	</div> <!-- thumbs-wrap.// -->
+<article class="gallery-wrap">
+	<div class="slider-banner-slick">
+		<div class="item-slide">
+			<img src="../superadmin/img/<?php echo htmlentities($result->Vimage1);?>">
+		</div>
+		<div class="item-slide">
+			<img src="../superadmin/img/<?php echo htmlentities($result->Vimage2);?>">
+		</div>
+		<div class="item-slide">
+			<img src="../superadmin/img/<?php echo htmlentities($result->Vimage3);?>">
+		</div>
+	</div>
 </article> <!-- gallery-wrap .end// -->
 		</aside>
-		<main class="col-md-6 border-left">
+		
+<main class="col-md-6 border-left">
 <article class="content-body">
 
 <h2 class="title"><?php echo htmlentities($result->title);?></h2>
@@ -175,15 +289,29 @@ if(isset($_POST['wish']))
 			<label>Quantity</label>
 			<form method="post">
 				<div class="input-group mb-3 input-spinner">
+
+				<td class="cart-product-quantity" width="130px">
+					<div class="input-group quantity">
+						<div class="input-group-prepend decrement-btn" style="cursor: pointer">
+							<span class="input-group-text">-</span>
+						</div>
+						<input type="text" name="quantity" class="qty-input form-control" maxlength="3" max="100" value="1">
+						<div class="input-group-append increment-btn" style="cursor: pointer">
+							<span class="input-group-text">+</span>
+						</div>
+					</div>
+				</td>
+
+					<!-- Quantity .//
 					<div class="input-group-prepend">
-						<button class="btn btn-light" type="button" id="button-plus"> + </button>
+						<button id="add" class="btn btn-light" type="button"> + </button>
 					</div>
 
-					<input type="text" name="quantity" class="form-control" value="1">
+					<input id="quan" type="text" name="quantity" class="form-control" value="1">
 
 					<div class="input-group-append">
-						<button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
-					</div>
+						<button id="sub" class="btn btn-light" type="button"> &minus; </button>
+					</div> Quantity .// -->
 				</div>
 		</div> <!-- col.// -->
 		<div class="form-group col-md">

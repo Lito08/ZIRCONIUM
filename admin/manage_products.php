@@ -95,6 +95,7 @@ else{
 											<th>Type</th>
 											<th>Product Name</th>
 											<th>Price (RM)</th>
+											<th>Old Price (RM)</th>
 											<th>Per</th>
 											<th>Quantity</th>
 											<th>Brand</th>
@@ -126,6 +127,7 @@ else{
 												<td><?php echo htmlentities($result->ptype);?></td>
 												<td><?php echo htmlentities($result->title);?></td>
 												<td><?php echo htmlentities($result->price);?></td>
+												<td><?php echo htmlentities($result->oprice);?></td>
 												<td><?php echo htmlentities($result->perm);?></td>
 												<td><?php echo htmlentities($result->stock);?></td>
 												<td><?php echo htmlentities($result->brand);?></td>

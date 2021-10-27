@@ -8,12 +8,13 @@ session_start();
 	$result = mysqli_query($con, 'SELECT SUM(Total) As val FROM cart');
 	$row = mysqli_fetch_assoc($result);
 	$sum = $row['val'];
-	
+
 	$sessid = $_SESSION['user_id'];
 	$query = "SELECT * FROM cart WHERE userEmail = '$sessid'";
 	$results = mysqli_query($con, $query) or die (mysqli_query());
 	if(mysqli_num_rows($results) == 0)
 	{
+		mysqli_query($con,"TRUNCATE TABLE cart");
 		echo '<div id="content" class="col-md-7"><div align="center"><h3>Your cart is empty.</h3> You can find our items on our <a href="index.php">product page</a>.</div></div><div class="col-md-7"></div>';
 	}
 	else
@@ -79,42 +80,54 @@ session_start();
 	{
 	foreach($results as $result)
 	{  ?>
+			<form method="post">
 			<article class="card-body border-bottom">
 					<div class="row">
 						<div class="col-md-7">
 							<figure class="itemside">
 								<div class="aside"><img src="superadmin/img/<?php echo htmlentities($result->Vimage1);?>" class="border img-sm"></div>
 								<figcaption class="info">
-									<a href="product_details.php?vhid=<?php echo htmlentities($result->pid);?>" name="name" class="title"><?php echo htmlentities($result->title);?></a>
+									<a name="name" class="title"><?php echo htmlentities($result->title);?></a>
 									<strong name="price" class="">RM<?php echo htmlentities($result->price);?></strong>
 										<?php if($_SESSION['user_id'])
     									{?>
-										<form method="post">
 										<div class="form-group">
 										<a href="#" class="btn-link mr-2">Save for later</a> 
-										<form method="post">
 										<input type="hidden" name="item_id" value="<?php echo htmlentities($result->pid) ?>">
 										<button type="submit" name="delete-cart-submit" class="btn btn-light"> Delete</button>
-										</form>
 										</div>
 										<?php } ?>
-										</form>
+										
 								</figcaption>
 							</figure> 
 						</div> <!-- col.// -->
-						<div class="col-md-5 text-md-right text-right"> 
+						<div class="col-md-5 text-md-right text-right">
 							<div class="input-group input-spinner">
 							  <div class="input-group-prepend">
-							    <button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-plus"></i> </button>
+							  	<?php if($_SESSION['user_id'])
+    							{?>
+							  	<div class="form-group">
+									<input type="hidden" name="item_id" value="<?php echo htmlentities($result->pid) ?>">
+									<button type="submit" name="adding-cart" class="btn btn-light"> <i class="fa fa-plus"></i> </button>
+							  	</div>
+								<?php } ?>
 							  </div>
 							  <input type="text" name="quantity" class="form-control"  value="<?php echo htmlentities($result->quantity) ?>">
 							  <div class="input-group-append">
-							    <button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-minus"></i> </button>
+							  	<?php if($_SESSION['user_id'])
+    							{?>
+							  	<div class="form-group">
+									<input type="hidden" name="item_id" value="<?php echo htmlentities($result->pid) ?>">
+									<button type="submit" name="minus-cart" class="btn btn-light"> <i class="fa fa-minus"></i> </button>
+								</div>
+								<?php } ?>
 							  </div>
 							</div> <!-- input-group.// -->
+							
 						</div>
 					</div> <!-- row.// -->
 			</article> <!-- card-group.// -->
+			</form>
 			<?php }} ?>		
 	</aside> <!-- col.// -->
 	
