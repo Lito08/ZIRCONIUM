@@ -40,7 +40,10 @@ Next step is to enable your composer;
 - Make sure your xampp folder is in the correct drive! Ex: My xampp folder in in "D:" drive. Therefore i will type "D:".
 - Once your directory looks like this Ex: "D:\Xampp"
 - Type "composer" and enter
-- If the output of composer is there then.....
+- If the output of composer is there then
+- Type "cd htdocs" Your directory must look like this "D:\Xampp\htdocs"
+- Type "cd ZIRCONIUM-main" Your directory must look like this "D:\Xampp\htdocs\ZIRCONIUM-main"
+- Type "composer update" and wait till it updates
 
 Now you have succesfully downloaded composer on your computer.
 
@@ -56,7 +59,17 @@ Now you have succesfully downloaded composer on your computer.
 - If there's no tables, you may need to refresh the page.
 
 4. Step 4 Running the website
-- On a new tab, type "localhost" and select (index of localhost).
-- Click ZIRCONIUM and you are done!
+- On a new tab, type "localhost".
+- Now you should be running the website!
+
+5. Step 5 Adding products to the website
+- Click supplier login on the footer of the website
+- Click super admin login
+- The username "admin" and password is "admin"
+- Click on Products on the left bar and click Add products.
+- Enter all of the product details and the price should have a decimal "Ex:0.00"
+- To select the images, please select from "ZIRCONIUM-main/superadmin/img/" from the directory.
+- You also can add your images but please put it inside "ZIRCONIUM-main/superadmin/img/" from the directory.
+- Click on save changes and there you go!
 
 If there is any questions, please do not hesitate to contact me (Lito) at "+60 13-317-4100" or email me at "danielyusoff08@gmail.com".
