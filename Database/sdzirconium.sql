@@ -249,6 +249,7 @@ CREATE TABLE `users` (
   `full_name` varchar(100) NOT NULL,
   `country` varchar(100) NOT NULL,
   `city` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `img` varchar(120) CHARACTER SET utf8 NOT NULL,
   `gender` varchar(20) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
